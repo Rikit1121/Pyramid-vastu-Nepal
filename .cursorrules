@@ -1,0 +1,48 @@
+# Cursor Rules — Pyramid Vastu Yantra
+
+## Source of truth
+
+Always check these files before generating code, and follow them exactly:
+- `design.md` — colors, fonts, buttons, cards, shadows, radius, icons, motion rules
+- `architecture.md` — site map, data shapes, tech stack, scope boundaries
+
+Do not deviate from these without being told to. Do not invent new colors, fonts, or layout patterns not described in design.md.
+
+## Tech stack (do not substitute)
+
+- Next.js App Router + React + TypeScript
+- Tailwind CSS for styling
+- Framer Motion for animation
+- Supabase (Postgres, Storage, Auth) for backend
+- Deploy target: Vercel
+
+## Conventions
+
+- Components: PascalCase, one component per file, colocate in `/components` by feature (`/components/products`, `/components/services`, `/components/shared`).
+- Use the App Router conventions (`app/` directory, `page.tsx`, `layout.tsx`).
+- Server Components by default; only use `"use client"` when interactivity/state/hooks require it.
+- All Supabase calls go through a typed client in `/lib/supabase.ts` — never inline raw fetch calls to Supabase elsewhere.
+- Use the `Product`, `Service`, and `Advisor` types defined in architecture.md — import from a shared `/types` file, do not redefine inline.
+- Tailwind: use the design tokens from design.md as CSS variables / Tailwind theme extension, not ad-hoc hex values scattered in className strings.
+
+## Hard boundaries — ask before doing any of these
+
+- Adding a new npm dependency not already discussed
+- Changing the color palette, fonts, or border-radius scale
+- Adding any payment/checkout code (explicitly out of scope this phase)
+- Building a real calendar/slot-booking system (explicitly out of scope — see architecture.md)
+- Creating user account / customer login functionality (out of scope)
+
+## Animation rules
+
+- No bouncy/spring easing. Use ease-out, 200-500ms depending on element size (buttons fast, section reveals slower).
+- No parallax, no floating particles as decoration, no click-spark, no text-shuffle/scramble, no marquee-style nav.
+- The hero video is the one signature moment on the homepage — do not add competing large animations on the same page.
+- When in doubt about whether an animation fits, default to subtler/quieter, not bolder.
+
+## Workflow
+
+- Build in the phases given, in order. Don't jump ahead to later phases' features.
+- When a phase is complete, stop and summarize what was built rather than continuing into the next phase unprompted.
+- Prefer editing/extending existing components over duplicating similar ones.
+- If a requirement is ambiguous, make the most reasonable assumption matching design.md/architecture.md and state the assumption — don't block on asking, but flag it clearly in your response.
