@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
+import { supabaseFetch } from "@/lib/supabase-fetch";
 
 /**
  * Next.js 16 Proxy (formerly middleware) — runs on the Node.js runtime.
@@ -19,6 +20,9 @@ export async function proxy(request: NextRequest) {
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
+      global: {
+        fetch: supabaseFetch,
+      },
       cookies: {
         getAll() {
           return request.cookies.getAll();
@@ -38,9 +42,15 @@ export async function proxy(request: NextRequest) {
 
   // getUser() verifies the JWT with the Supabase auth server — do not trust
   // getSession() alone here.
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  let user = null;
+  try {
+    const {
+      data: { user: authUser },
+    } = await supabase.auth.getUser();
+    user = authUser;
+  } catch {
+    // Supabase unreachable — treat as signed out so public pages still load.
+  }
 
   const { pathname } = request.nextUrl;
   const isLoginRoute = pathname === "/admin/login";

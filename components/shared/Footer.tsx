@@ -1,10 +1,17 @@
 import Link from "next/link";
+import {
+  EMAILS,
+  FOOTER_TAGLINE,
+  PHONES,
+  SOCIAL_LINKS,
+} from "@/lib/contact";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/vastu-advisory", label: "Vastu Advisory" },
   { href: "/cupping-healing", label: "Cupping & Healing" },
   { href: "/shop", label: "Shop" },
+  { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ] as const;
@@ -68,9 +75,9 @@ function IconYoutube() {
 }
 
 const SOCIALS = [
-  { href: "https://www.instagram.com/pyramidvaastunepal", label: "Instagram", Icon: IconInstagram },
-  { href: "https://www.facebook.com/pyramidvaastunepal", label: "Facebook", Icon: IconFacebook },
-  { href: "https://www.youtube.com/@PyramidVaastuNepal", label: "YouTube", Icon: IconYoutube },
+  { ...SOCIAL_LINKS[0], Icon: IconInstagram },
+  { ...SOCIAL_LINKS[1], Icon: IconFacebook },
+  { ...SOCIAL_LINKS[2], Icon: IconYoutube },
 ] as const;
 
 export default function Footer() {
@@ -101,8 +108,7 @@ export default function Footer() {
               Power of Pyramid
             </p>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-ivory-text/55">
-              Authentic Vastu advisory, healing therapy, and handcrafted sacred
-              geometry. 13+ years in Nepal · Certified by Jeeten Pyramid, India.
+              {FOOTER_TAGLINE}
             </p>
           </div>
 
@@ -130,24 +136,24 @@ export default function Footer() {
             <p className="mb-4 text-[10px] uppercase tracking-[0.25em] text-gold-line">
               Connect
             </p>
-            <a
-              href="tel:9851151618"
-              className="block text-sm text-ivory-text/55 transition-colors duration-200 hover:text-ivory-text"
-            >
-              Mobile: 985-115-1618
-            </a>
-            <a
-              href="tel:015909618"
-              className="mt-1 block text-sm text-ivory-text/55 transition-colors duration-200 hover:text-ivory-text"
-            >
-              Landline: 01-590-9618
-            </a>
-            <a
-              href="mailto:hello@pyramidvastu.com"
-              className="mt-1 block text-sm text-ivory-text/55 transition-colors duration-200 hover:text-ivory-text"
-            >
-              hello@pyramidvastu.com
-            </a>
+            {PHONES.map(({ label, display, tel }) => (
+              <a
+                key={tel}
+                href={`tel:${tel}`}
+                className="mt-1 block text-sm text-ivory-text/55 transition-colors duration-200 hover:text-ivory-text first:mt-0"
+              >
+                {label}: {display}
+              </a>
+            ))}
+            {EMAILS.map((email) => (
+              <a
+                key={email}
+                href={`mailto:${email}`}
+                className="mt-1 block text-sm text-ivory-text/55 transition-colors duration-200 hover:text-ivory-text"
+              >
+                {email}
+              </a>
+            ))}
             <div className="mt-6 flex items-center gap-5">
               {SOCIALS.map(({ href, label, Icon }) => (
                 <a

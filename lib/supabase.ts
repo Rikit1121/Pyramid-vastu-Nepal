@@ -1,4 +1,5 @@
 import { createBrowserClient } from "@supabase/ssr";
+import { supabaseFetch } from "@/lib/supabase-fetch";
 
 /**
  * Browser Supabase client — for use in Client Components only.
@@ -19,6 +20,39 @@ import { createBrowserClient } from "@supabase/ssr";
 export type Database = {
   public: {
     Tables: {
+      blog_posts: {
+        Row: {
+          id: string;
+          slug: string;
+          title: string;
+          excerpt: string;
+          content: string;
+          cover_image: string | null;
+          published: boolean;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          slug: string;
+          title: string;
+          excerpt?: string;
+          content?: string;
+          cover_image?: string | null;
+          published?: boolean;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          slug?: string;
+          title?: string;
+          excerpt?: string;
+          content?: string;
+          cover_image?: string | null;
+          published?: boolean;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
       advisors: {
         Row: {
           id: string;
@@ -110,6 +144,9 @@ export type AdvisorRow = Database["public"]["Tables"]["advisors"]["Row"];
 export type AdvisorInsert = Database["public"]["Tables"]["advisors"]["Insert"];
 export type AdvisorUpdate = Database["public"]["Tables"]["advisors"]["Update"];
 
+export type BlogPostRow = Database["public"]["Tables"]["blog_posts"]["Row"];
+export type BlogPostInsert = Database["public"]["Tables"]["blog_posts"]["Insert"];
+
 function readEnv() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -124,5 +161,9 @@ function readEnv() {
 /** Create a browser client. Call only in Client Components. */
 export function createClient() {
   const { url, anonKey } = readEnv();
-  return createBrowserClient<Database>(url, anonKey);
+  return createBrowserClient<Database>(url, anonKey, {
+    global: {
+      fetch: supabaseFetch,
+    },
+  });
 }

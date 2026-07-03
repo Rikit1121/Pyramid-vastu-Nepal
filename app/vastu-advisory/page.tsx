@@ -18,6 +18,10 @@ export default async function VastuAdvisoryPage() {
       heroImage="/images/Advisor.png"
       heroImageAlt={advisor.name}
       pageBackgroundImage="/images/background4.png"
+      processImage="images/Advisor3.png"
+      processImageAlt="Vastu consultation and floor plan review"
+      benefitsImage="images/Advisor4.png"
+      benefitsImageAlt="Benefits of Vastu Advisory"
       advisor={advisor}
     />
   );

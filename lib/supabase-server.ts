@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { createServerClient } from "@supabase/ssr";
 import type { User } from "@supabase/supabase-js";
 import type { Database } from "@/lib/supabase";
+import { supabaseFetch } from "@/lib/supabase-fetch";
 
 /**
  * Server Supabase client — for Server Components, Server Actions, and Route
@@ -23,6 +24,9 @@ export async function createServerSupabase() {
   }
 
   return createServerClient<Database>(url, anonKey, {
+    global: {
+      fetch: supabaseFetch,
+    },
     cookies: {
       getAll() {
         return cookieStore.getAll();
@@ -49,9 +53,13 @@ export async function createServerSupabase() {
  * Use this to gate admin Server Components and Server Actions.
  */
 export async function getServerUser(): Promise<User | null> {
-  const supabase = await createServerSupabase();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  return user;
+  try {
+    const supabase = await createServerSupabase();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    return user;
+  } catch {
+    return null;
+  }
 }

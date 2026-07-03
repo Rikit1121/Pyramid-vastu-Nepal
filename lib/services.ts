@@ -1,11 +1,12 @@
 import type { Advisor, Service } from "@/types";
+import { WHATSAPP_NUMBER } from "@/lib/contact";
 
 export const ADVISOR: Advisor = {
   name: "Pyramid Vaastu Nepal",
-  role: "Certified Pyramid Vastu Expert · 13 Years in Practice",
+  role: "Certified Vaastu & Healing Expert",
   languages: ["Nepali", "Hindi", "English"],
   photo: "/images/Advisor.png",
-  whatsappNumber: "9779851151618",
+  whatsappNumber: WHATSAPP_NUMBER,
 };
 
 // Extended service data — heroImage is separate from the Service type so the
@@ -19,7 +20,7 @@ export const SERVICES: Record<Service["slug"], ServiceData> = {
     tagline:
       "Align your home or workplace with the timeless principles of Vastu Shastra.",
     overview:
-      "Vastu Shastra is the ancient Indian science of spatial harmony — a precise system that maps the flow of energy through your living and working spaces. A balanced Vastu environment supports clarity, well-being, and prosperity. Our consultations assess directional alignment, room placement, elemental balance, and energy pathways, and provide you with a clear, actionable plan to bring your space into alignment.",
+      "Vastu Shastra is the ancient Vedic science of spatial harmony — a system refined over 5,000 years that maps how the flow of energy through your living and working spaces affects every dimension of your life. From the quality of your sleep and the clarity of your thinking, to the health of your relationships and the growth of your business, the energy configuration of your space plays a direct and measurable role.\n\nOur Vastu Advisory service assesses your space across all key dimensions: directional alignment, elemental balance, Brahmasthan (centre) energy, room-by-room function, and the placement of furniture and structural elements. We then provide a clear, practical correction plan — using pyramid yantras, directional adjustments, and energy tools available in our shop — that requires no construction, no breaking, and no disruption to your daily life.",
     process: [
       {
         title: "Initial Consultation",
@@ -27,9 +28,9 @@ export const SERVICES: Record<Service["slug"], ServiceData> = {
           "We begin with a detailed discussion of your space, your goals, and any existing challenges you have noticed — sleep quality, focus, relationships, finances — all of which can have spatial roots.",
       },
       {
-        title: "Space Assessment",
+        title: "Space Analysis",
         description:
-          "Using floor plans and, where possible, a site visit, we map the directional zones (Vastu mandala), identify imbalances in the five elements, and note structural factors that may be affecting the energy of the space.",
+          "Using your floor plan and, where needed, a site visit, we map the directional zones (Vastu Mandala), identify elemental imbalances, and note any structural factors — entrance direction, kitchen placement, bathroom locations, Brahmasthan obstructions — that may be affecting the energy of the space.",
       },
       {
         title: "Personalised Recommendations",
@@ -60,7 +61,7 @@ export const SERVICES: Record<Service["slug"], ServiceData> = {
     tagline:
       "Restore circulation, release tension, and rebalance your body's natural energy flow.",
     overview:
-      "Cupping therapy is one of the oldest healing modalities in the world — used across traditional Nepali, Chinese, and Ayurvedic medicine for centuries. By applying cups to specific points on the body, the therapy creates gentle suction that lifts underlying tissue, promotes blood flow, and encourages the release of stagnation. We combine traditional cupping with complementary energy-healing techniques to address both the physical and energetic dimensions of your well-being.",
+      "Cupping therapy is one of the world's oldest physical healing modalities — practiced for thousands of years across Nepali, Chinese, and Ayurvedic traditions. By creating gentle suction at specific meridian points and body zones, cupping lifts underlying tissue, promotes deep blood flow, releases muscular stagnation, and encourages the movement of blocked energy through the body.\n\nAt Pyramid Vaastu Nepal, we combine traditional cupping with complementary energy-healing techniques — including pyramid energy tools and healing therapy — to address not just the physical symptoms but the energetic roots of chronic tension, fatigue, and stress. This integrated approach means our sessions support you on multiple levels simultaneously: physical release, energetic rebalancing, and deep nervous system rest.\n\nSessions are available for individuals dealing with chronic back, neck, and shoulder tension; recurring headaches; anxiety and poor sleep; and general fatigue or energetic depletion. No prior experience with cupping or energy healing is required — our therapist will guide you through every step.",
     process: [
       {
         title: "Health & Wellness Intake",

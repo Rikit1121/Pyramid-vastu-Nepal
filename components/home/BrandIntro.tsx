@@ -58,6 +58,19 @@ export default function BrandIntro() {
               </p>
             </Reveal>
 
+            {/* Callout */}
+            <Reveal delay={0.15}>
+              <div className="mt-8 rounded-card border border-gold-line/20 bg-surface/60 px-5 py-4">
+                <p className="text-sm font-medium leading-snug text-ivory-text/90">
+                  Scientific ways to attract Good Fortune into your life
+                </p>
+                <p className="mt-1 text-xs leading-relaxed text-ivory-text/55">
+                  Learn and use this revolutionary method — trusted by 10 million
+                  people around the globe.
+                </p>
+              </div>
+            </Reveal>
+
             {/* Stats row */}
             <Reveal delay={0.2}>
               <div className="mt-10 grid grid-cols-3 gap-4 border-t border-border-hairline pt-8">

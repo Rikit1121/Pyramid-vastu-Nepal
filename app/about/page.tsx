@@ -3,6 +3,7 @@ import Reveal from "@/components/shared/Reveal";
 import RevealText from "@/components/shared/RevealText";
 import AdvisorCard from "@/components/shared/AdvisorCard";
 import { getPrimaryAdvisor } from "@/lib/advisors";
+import { OFFICE_ADDRESS, OFFICE_HOURS } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "About",
@@ -12,16 +13,16 @@ export const metadata: Metadata = {
 
 const CREDIBILITY_POINTS = [
   {
-    heading: "13+ Years in Practice",
-    body: "Pyramid Vaastu Nepal has been serving homes, offices, and businesses across Kathmandu and Nepal for over 13 years — with a consistent, trust-first approach to every consultation.",
+    heading: "Personal, Direct Consultations",
+    body: "Every Vastu consultation and therapy session is led directly by our advisor — no intermediaries, no generic advice. Your space and your concerns are treated as unique.",
   },
   {
-    heading: "Certified by Jeeten Pyramid, India",
-    body: "Our practice is certified and endorsed by India's 48-year-old Jeeten Pyramid institute — one of the most respected Vastu and pyramid research organisations in South Asia.",
+    heading: "Non-Invasive Corrections",
+    body: "Our pyramid yantra technique corrects Vastu defects without breaking, cracking, or major structural changes — practical remedies suited to modern homes and offices.",
   },
   {
-    heading: "Used Across 57 Countries",
-    body: "The Pyramid Yantra technique we use is fast, simple, and modern — tested and refined across 57 countries. Vastu defects are corrected without any breaking or cracking of the structure.",
+    heading: "Integrated Vastu & Healing",
+    body: "We address both your environment and your body. Stagnation in the space and stagnation in the body often mirror each other — our practice works on both levels.",
   },
   {
     heading: "Trust Builds Trust",
@@ -64,8 +65,8 @@ export default async function AboutPage() {
           />
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-ivory-text/65">
-              13+ years serving Nepal. Certified by India&rsquo;s 48-year-old
-              Jeeten Pyramid institute. Successfully used across 57 countries.
+              Vastu advisory, cupping &amp; healing therapy, and handcrafted
+              pyramid yantras — rooted in Kathmandu, guided by tradition.
             </p>
           </Reveal>
         </div>
@@ -84,15 +85,14 @@ export default async function AboutPage() {
             <p className="mt-6 text-base leading-[1.75] text-ivory-text/70">
               Pyramid Vaastu Nepal was founded on a single conviction: that
               Vastu Shastra is not folklore — it is a precise, testable
-              framework for how energy moves through built space. For 13+ years,
-              we have seen it work quietly and consistently in homes, offices,
-              and businesses across Kathmandu and Nepal.
+              framework for how energy moves through built space. We have seen
+              it work quietly and consistently in homes, offices, and businesses
+              across Kathmandu and Nepal.
             </p>
             <p className="mt-5 text-base leading-[1.75] text-ivory-text/70">
-              Certified by India&rsquo;s 48-year-old Jeeten Pyramid institute,
-              our technique corrects Vastu defects using Pyramid Yantra — no
+              Our technique corrects Vastu defects using Pyramid Yantra — no
               breaking, no cracking, no major structural changes. Fast, simple,
-              and modern, it has been used successfully across 57 countries.
+              and modern remedies that fit the way people actually live today.
             </p>
             </Reveal>
           </div>
@@ -117,6 +117,87 @@ export default async function AboutPage() {
               Stagnation in the space and stagnation in the body often mirror
               each other. We address both.
             </p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Office photos — scattered/staggered ────────────────────────── */}
+      <section className="overflow-hidden border-b border-border-hairline">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
+          <div className="mx-auto mb-14 max-w-xl text-center">
+            <RevealText
+              as="p"
+              text="Our Space"
+              className="mb-4 text-[11px] uppercase tracking-[0.35em] text-gold-line"
+            />
+            <RevealText
+              as="h2"
+              text="Where the work happens"
+              className="font-display text-3xl leading-tight tracking-tight text-ivory-text sm:text-4xl"
+            />
+            <Reveal delay={0.08}>
+              <p className="mt-4 text-sm leading-relaxed text-ivory-text/60">
+                Our Kathmandu office — come visit us in person.
+              </p>
+            </Reveal>
+          </div>
+
+          {/* Row 1 — photo left, text right */}
+          <div className="mb-10 flex flex-col items-center gap-8 sm:flex-row sm:items-end sm:gap-12">
+            <Reveal delay={0} className="w-full sm:w-3/5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/office1.png"
+                alt="Pyramid Vaastu Nepal office"
+                className="w-full rounded-[6px] object-cover shadow-lg"
+                style={{ aspectRatio: "4 / 3" }}
+                loading="lazy"
+              />
+            </Reveal>
+            <Reveal delay={0.1} className="w-full sm:w-2/5 sm:pb-6">
+              <p className="text-sm leading-relaxed text-ivory-text/60">
+                {OFFICE_ADDRESS}
+              </p>
+              <p className="mt-2 text-sm text-ivory-text/40">{OFFICE_HOURS}</p>
+            </Reveal>
+          </div>
+
+          {/* Row 2 — two side-by-side, offset heights */}
+          <div className="mb-10 flex flex-col items-start gap-6 sm:flex-row sm:items-start">
+            <Reveal delay={0.05} className="w-full sm:mt-10 sm:w-2/5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/office3.png"
+                alt="Pyramid Vaastu Nepal office — awards"
+                className="w-full rounded-[6px] object-cover shadow-lg"
+                style={{ aspectRatio: "3 / 4" }}
+                loading="lazy"
+              />
+            </Reveal>
+            <Reveal delay={0.12} className="w-full sm:w-3/5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/office2.png"
+                alt="Pyramid Vaastu Nepal office — consultation room"
+                className="w-full rounded-[6px] object-cover shadow-lg"
+                style={{ aspectRatio: "4 / 3" }}
+                loading="lazy"
+              />
+            </Reveal>
+          </div>
+
+          {/* Row 3 — small photo right-aligned */}
+          <div className="flex justify-end">
+            <Reveal delay={0.08} className="w-full sm:w-1/2">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/office4.png"
+                alt="Pyramid Vaastu Nepal office — library"
+                className="w-full rounded-[6px] object-cover shadow-lg"
+                style={{ aspectRatio: "4 / 3" }}
+                loading="lazy"
+              />
             </Reveal>
           </div>
         </div>

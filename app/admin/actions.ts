@@ -359,3 +359,110 @@ export async function deleteAdvisor(formData: FormData): Promise<void> {
   revalidatePath("/admin/advisors");
   revalidatePath("/");
 }
+
+
+// ─── Blog post actions ────────────────────────────────────────────────────────
+
+function parseBlogForm(formData: FormData) {
+  const title = String(formData.get("title") ?? "").trim();
+  const slug = String(formData.get("slug") ?? "").trim();
+  const excerpt = String(formData.get("excerpt") ?? "").trim();
+  const content = String(formData.get("content") ?? "").trim();
+  const coverImage = String(formData.get("coverImage") ?? "").trim() || null;
+  const published = formData.get("published") != null;
+  return { title, slug, excerpt, content, coverImage, published };
+}
+
+export async function createBlogPost(
+  _prev: ActionState,
+  formData: FormData,
+): Promise<ActionState> {
+  await requireAuth();
+  const fields = parseBlogForm(formData);
+  if (!fields.title) return { error: "Title is required." };
+  if (!fields.slug) return { error: "Slug is required." };
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(fields.slug)) {
+    return { error: "Slug must be lowercase letters, numbers, and hyphens only." };
+  }
+
+  const supabase = await createServerSupabase();
+  const { error } = await supabase.from("blog_posts").insert({
+    title: fields.title,
+    slug: fields.slug,
+    excerpt: fields.excerpt,
+    content: fields.content,
+    cover_image: fields.coverImage,
+    published: fields.published,
+  });
+
+  if (error) {
+    return {
+      error:
+        error.code === "23505"
+          ? "A post with that slug already exists."
+          : error.message,
+    };
+  }
+
+  revalidatePath("/admin/blog");
+  revalidatePath("/blog");
+  revalidatePath("/");
+  redirect("/admin/blog");
+}
+
+export async function updateBlogPost(
+  _prev: ActionState,
+  formData: FormData,
+): Promise<ActionState> {
+  await requireAuth();
+  const id = String(formData.get("id") ?? "").trim();
+  if (!id) return { error: "Missing post id." };
+
+  const fields = parseBlogForm(formData);
+  if (!fields.title) return { error: "Title is required." };
+  if (!fields.slug) return { error: "Slug is required." };
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(fields.slug)) {
+    return { error: "Slug must be lowercase letters, numbers, and hyphens only." };
+  }
+
+  const supabase = await createServerSupabase();
+  const { error } = await supabase
+    .from("blog_posts")
+    .update({
+      title: fields.title,
+      slug: fields.slug,
+      excerpt: fields.excerpt,
+      content: fields.content,
+      cover_image: fields.coverImage,
+      published: fields.published,
+    })
+    .eq("id", id);
+
+  if (error) {
+    return {
+      error:
+        error.code === "23505"
+          ? "A post with that slug already exists."
+          : error.message,
+    };
+  }
+
+  revalidatePath("/admin/blog");
+  revalidatePath("/blog");
+  revalidatePath(`/blog/${fields.slug}`);
+  revalidatePath("/");
+  redirect("/admin/blog");
+}
+
+export async function deleteBlogPost(formData: FormData): Promise<void> {
+  await requireAuth();
+  const id = String(formData.get("id") ?? "");
+  if (!id) return;
+
+  const supabase = await createServerSupabase();
+  await supabase.from("blog_posts").delete().eq("id", id);
+
+  revalidatePath("/admin/blog");
+  revalidatePath("/blog");
+  revalidatePath("/");
+}

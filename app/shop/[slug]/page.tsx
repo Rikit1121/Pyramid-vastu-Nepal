@@ -66,7 +66,23 @@ export default async function ProductDetailPage({ params }: Props) {
   const enquiryMessage = `Namaste! I'm interested in the ${product.name} (NPR ${product.price.toLocaleString()}). Could you please share availability and ordering details?`;
 
   return (
-    <div className="mx-auto max-w-7xl px-6 pt-28 pb-24 lg:px-8 lg:pt-32 lg:pb-28">
+    <div className="relative min-h-screen">
+      <div
+        className="pointer-events-none fixed inset-0 -z-10"
+        style={{
+          backgroundImage: "url('/images/background6.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none fixed inset-0 -z-10 bg-bg-deep/85"
+        aria-hidden="true"
+      />
+
+    <div className="relative z-10 mx-auto max-w-7xl px-6 pt-28 pb-24 lg:px-8 lg:pt-32 lg:pb-28">
       {/* Back link */}
       <Reveal>
         <Link
@@ -185,6 +201,7 @@ export default async function ProductDetailPage({ params }: Props) {
           </div>
         </Reveal>
       </div>
+    </div>
     </div>
   );
 }

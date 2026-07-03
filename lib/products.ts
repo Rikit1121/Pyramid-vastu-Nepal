@@ -1,6 +1,7 @@
 import type { Product } from "@/types";
 import type { ProductRow } from "@/lib/supabase";
 import { createServerSupabase } from "@/lib/supabase-server";
+import { withQueryTimeout } from "@/lib/supabase-timeout";
 
 /**
  * Live product data access (Phase 8 cutover).
@@ -27,45 +28,64 @@ export function rowToProduct(row: ProductRow): Product {
 }
 
 export async function getAllProducts(): Promise<Product[]> {
-  const supabase = await createServerSupabase();
-  const { data, error } = await supabase
-    .from("products")
-    .select("*")
-    .order("created_at", { ascending: false });
+  return withQueryTimeout(fetchAllProducts(), []);
+}
 
-  if (error) {
-    console.error("getAllProducts error:", error.message);
+async function fetchAllProducts(): Promise<Product[]> {
+  try {
+    const supabase = await createServerSupabase();
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("getAllProducts error:", error.message);
+      return [];
+    }
+    return (data ?? []).map(rowToProduct);
+  } catch (err) {
+    console.error("getAllProducts error:", err);
     return [];
   }
-  return (data ?? []).map(rowToProduct);
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
-  const supabase = await createServerSupabase();
-  const { data, error } = await supabase
-    .from("products")
-    .select("*")
-    .eq("slug", slug)
-    .maybeSingle();
+  try {
+    const supabase = await createServerSupabase();
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .eq("slug", slug)
+      .maybeSingle();
 
-  if (error) {
-    console.error("getProductBySlug error:", error.message);
+    if (error) {
+      console.error("getProductBySlug error:", error.message);
+      return null;
+    }
+    return data ? rowToProduct(data) : null;
+  } catch (err) {
+    console.error("getProductBySlug error:", err);
     return null;
   }
-  return data ? rowToProduct(data) : null;
 }
 
 export async function getProductById(id: string): Promise<Product | null> {
-  const supabase = await createServerSupabase();
-  const { data, error } = await supabase
-    .from("products")
-    .select("*")
-    .eq("id", id)
-    .maybeSingle();
+  try {
+    const supabase = await createServerSupabase();
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .eq("id", id)
+      .maybeSingle();
 
-  if (error) {
-    console.error("getProductById error:", error.message);
+    if (error) {
+      console.error("getProductById error:", error.message);
+      return null;
+    }
+    return data ? rowToProduct(data) : null;
+  } catch (err) {
+    console.error("getProductById error:", err);
     return null;
   }
-  return data ? rowToProduct(data) : null;
 }

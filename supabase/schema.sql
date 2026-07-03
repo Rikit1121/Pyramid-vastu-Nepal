@@ -190,11 +190,71 @@ create policy "Authenticated delete advisor images"
 
 
 -- -----------------------------------------------------------------------------
--- 8. (Optional) Seed data — uncomment to insert the 5 placeholder products.
---    These mirror lib/products.ts. Remove/replace once admin CRUD is live.
+-- 8. Product seed data — run supabase/seed-products.sql for the 6 real
+--    Jiten Pyramid products (upserts by slug). Upload real photos via /admin.
 -- -----------------------------------------------------------------------------
--- insert into public.products (slug, name, price, description, benefits, material, size, images, in_stock) values
---   ('copper-vastu-pyramid', 'Copper Vastu Pyramid', 3500, 'A precision-crafted pure copper pyramid…',
---     array['Strengthens the energy field at the Brahmasthan'], 'Pure copper', '3 × 3 inches base, 2.4 inches height',
---     array['https://picsum.photos/seed/copper-pyramid-1/800/800'], true)
--- on conflict (slug) do nothing;
+
+
+-- -----------------------------------------------------------------------------
+-- 9. blog_posts table
+-- -----------------------------------------------------------------------------
+create table if not exists public.blog_posts (
+  id           uuid primary key default gen_random_uuid(),
+  slug         text not null unique,
+  title        text not null,
+  excerpt      text not null default '',
+  content      text not null default '',
+  cover_image  text,
+  published    boolean not null default false,
+  created_at   timestamptz not null default now()
+);
+
+create index if not exists blog_posts_slug_idx on public.blog_posts (slug);
+create index if not exists blog_posts_created_at_idx on public.blog_posts (created_at desc);
+create index if not exists blog_posts_published_idx on public.blog_posts (published, created_at desc);
+
+
+-- -----------------------------------------------------------------------------
+-- 10. Row Level Security on blog_posts
+-- -----------------------------------------------------------------------------
+alter table public.blog_posts enable row level security;
+
+-- Public (anon) may read PUBLISHED posts only.
+drop policy if exists "Published blog posts are publicly readable" on public.blog_posts;
+create policy "Published blog posts are publicly readable"
+  on public.blog_posts
+  for select
+  using (published = true);
+
+-- Authenticated admin may read ALL posts (including drafts).
+drop policy if exists "Authenticated can read all blog posts" on public.blog_posts;
+create policy "Authenticated can read all blog posts"
+  on public.blog_posts
+  for select
+  to authenticated
+  using (true);
+
+-- Only authenticated users may INSERT.
+drop policy if exists "Authenticated can insert blog posts" on public.blog_posts;
+create policy "Authenticated can insert blog posts"
+  on public.blog_posts
+  for insert
+  to authenticated
+  with check (true);
+
+-- Only authenticated users may UPDATE.
+drop policy if exists "Authenticated can update blog posts" on public.blog_posts;
+create policy "Authenticated can update blog posts"
+  on public.blog_posts
+  for update
+  to authenticated
+  using (true)
+  with check (true);
+
+-- Only authenticated users may DELETE.
+drop policy if exists "Authenticated can delete blog posts" on public.blog_posts;
+create policy "Authenticated can delete blog posts"
+  on public.blog_posts
+  for delete
+  to authenticated
+  using (true);

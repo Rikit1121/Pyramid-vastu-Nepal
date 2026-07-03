@@ -34,3 +34,14 @@ export type Advisor = {
   photo: string;
   whatsappNumber: string;
 };
+
+export type BlogPost = {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  coverImage: string | null;
+  published: boolean;
+  createdAt: string;
+};

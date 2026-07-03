@@ -3,6 +3,11 @@ import Reveal from "@/components/shared/Reveal";
 import RevealText from "@/components/shared/RevealText";
 import ContactForm from "@/components/contact/ContactForm";
 import WhatsAppButton from "@/components/shared/WhatsAppButton";
+import {
+  EMAILS,
+  PHONES,
+  SOCIAL_LINKS,
+} from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -61,14 +66,32 @@ function MailIcon() {
 }
 
 const SOCIALS = [
-  { href: "https://www.instagram.com/pyramidvaastunepal", label: "Instagram", Icon: IconInstagram },
-  { href: "https://www.facebook.com/pyramidvaastunepal", label: "Facebook", Icon: IconFacebook },
-  { href: "https://www.youtube.com/@PyramidVaastuNepal", label: "YouTube", Icon: IconYoutube },
+  { ...SOCIAL_LINKS[0], Icon: IconInstagram },
+  { ...SOCIAL_LINKS[1], Icon: IconFacebook },
+  { ...SOCIAL_LINKS[2], Icon: IconYoutube },
 ] as const;
+
 
 export default function ContactPage() {
   return (
-    <div className="mx-auto max-w-7xl px-6 pt-32 pb-24 lg:px-8 lg:pb-28">
+    <div className="relative min-h-screen">
+      {/* Subtle page background */}
+      <div
+        className="pointer-events-none fixed inset-0 -z-10"
+        style={{
+          backgroundImage: "url('/images/background3.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none fixed inset-0 -z-10 bg-bg-deep/90"
+        aria-hidden="true"
+      />
+
+    <div className="relative z-10 mx-auto max-w-7xl px-6 pt-32 pb-24 lg:px-8 lg:pb-28">
       {/* Page header */}
       <div className="max-w-2xl">
         <RevealText
@@ -136,24 +159,24 @@ export default function ContactPage() {
             <div className="flex items-start gap-3">
               <MailIcon />
               <div>
-                <a
-                  href="tel:9851151618"
-                  className="block text-sm text-ivory-text/80 underline-offset-4 transition-colors duration-200 hover:text-ivory-text hover:underline"
-                >
-                  Mobile: 985-115-1618
-                </a>
-                <a
-                  href="tel:015909618"
-                  className="mt-1 block text-sm text-ivory-text/80 underline-offset-4 transition-colors duration-200 hover:text-ivory-text hover:underline"
-                >
-                  Landline: 01-590-9618
-                </a>
-                <a
-                  href="mailto:hello@pyramidvastu.com"
-                  className="mt-1 block text-sm text-ivory-text/80 underline-offset-4 transition-colors duration-200 hover:text-ivory-text hover:underline"
-                >
-                  hello@pyramidvastu.com
-                </a>
+                {PHONES.map(({ label, display, tel }) => (
+                  <a
+                    key={tel}
+                    href={`tel:${tel}`}
+                    className="block text-sm text-ivory-text/80 underline-offset-4 transition-colors duration-200 hover:text-ivory-text hover:underline"
+                  >
+                    {label}: {display}
+                  </a>
+                ))}
+                {EMAILS.map((email) => (
+                  <a
+                    key={email}
+                    href={`mailto:${email}`}
+                    className="mt-1 block text-sm text-ivory-text/80 underline-offset-4 transition-colors duration-200 hover:text-ivory-text hover:underline"
+                  >
+                    {email}
+                  </a>
+                ))}
               </div>
             </div>
           </div>
@@ -210,6 +233,7 @@ export default function ContactPage() {
           </div>
         </div>
       </Reveal>
+    </div>
     </div>
   );
 }

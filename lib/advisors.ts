@@ -1,6 +1,7 @@
 import type { Advisor } from "@/types";
 import type { AdvisorRow } from "@/lib/supabase";
 import { createServerSupabase } from "@/lib/supabase-server";
+import { withQueryTimeout } from "@/lib/supabase-timeout";
 import { ADVISOR as STATIC_ADVISOR } from "@/lib/services";
 
 export function rowToAdvisor(row: AdvisorRow): Advisor {
@@ -51,6 +52,10 @@ export async function getAdvisorById(id: string): Promise<Advisor | null> {
  * the DB is unreachable — so the site always shows something.
  */
 export async function getPrimaryAdvisor(): Promise<Advisor> {
+  return withQueryTimeout(fetchPrimaryAdvisor(), STATIC_ADVISOR);
+}
+
+async function fetchPrimaryAdvisor(): Promise<Advisor> {
   try {
     const supabase = await createServerSupabase();
     const { data, error } = await supabase

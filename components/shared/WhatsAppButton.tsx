@@ -1,3 +1,4 @@
+import { WHATSAPP_NUMBER } from "@/lib/contact";
 import { ADVISOR } from "@/lib/services";
 
 type WhatsAppButtonProps = {

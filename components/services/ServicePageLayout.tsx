@@ -10,6 +10,12 @@ type ServicePageLayoutProps = {
   /** Optional full-page background (e.g. former hero art moved behind content). */
   pageBackgroundImage?: string;
   heroImageAlt?: string;
+  /** Secondary image alongside the process steps. */
+  processImage?: string;
+  processImageAlt?: string;
+  /** Side image in the benefits section. */
+  benefitsImage?: string;
+  benefitsImageAlt?: string;
 };
 
 function CheckIcon() {
@@ -37,6 +43,10 @@ export default function ServicePageLayout({
   advisor,
   heroImageAlt,
   pageBackgroundImage,
+  processImage,
+  processImageAlt,
+  benefitsImage,
+  benefitsImageAlt,
 }: ServicePageLayoutProps) {
   const sectionBg = pageBackgroundImage
     ? "bg-surface/60 backdrop-blur-sm"
@@ -114,9 +124,17 @@ export default function ServicePageLayout({
             className="font-display text-3xl leading-tight tracking-tight text-ivory-text sm:text-4xl"
           />
           <Reveal delay={0.1}>
-            <p className="mt-6 text-base leading-[1.75] text-ivory-text/75">
-              {service.overview}
-            </p>
+            {service.overview.split("\n\n").map((paragraph, i) => (
+              <p
+                key={i}
+                className={[
+                  "text-base leading-[1.75] text-ivory-text/75",
+                  i === 0 ? "mt-6" : "mt-5",
+                ].join(" ")}
+              >
+                {paragraph}
+              </p>
+            ))}
           </Reveal>
         </div>
       </section>
@@ -137,26 +155,48 @@ export default function ServicePageLayout({
             />
           </div>
 
-          <ol className="mt-14 space-y-10">
-            {service.process.map((step, i) => (
-              <Reveal key={step.title} delay={i * 0.06}>
-                <li className="grid grid-cols-[3rem_1fr] gap-6">
-                  {/* Step number */}
-                  <span className="font-display text-3xl leading-none tracking-tight text-copper/50 select-none">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <h3 className="font-display text-xl tracking-tight text-ivory-text">
-                      {step.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ivory-text/65">
-                      {step.description}
-                    </p>
-                  </div>
-                </li>
+          <div
+            className={[
+              "mt-14",
+              processImage
+                ? "grid grid-cols-1 items-start gap-12 lg:grid-cols-[1fr_320px]"
+                : "",
+            ].join(" ")}
+          >
+            <ol className="space-y-10">
+              {service.process.map((step, i) => (
+                <Reveal key={step.title} delay={i * 0.06}>
+                  <li className="grid grid-cols-[3rem_1fr] gap-6">
+                    {/* Step number */}
+                    <span className="font-display text-3xl leading-none tracking-tight text-copper/50 select-none">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <h3 className="font-display text-xl tracking-tight text-ivory-text">
+                        {step.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-ivory-text/65">
+                        {step.description}
+                      </p>
+                    </div>
+                  </li>
+                </Reveal>
+              ))}
+            </ol>
+
+            {processImage ? (
+              <Reveal delay={0.1} className="lg:sticky lg:top-32">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={processImage}
+                  alt={processImageAlt ?? `${service.name} process`}
+                  className="w-full object-cover"
+                  style={{ aspectRatio: "4 / 5" }}
+                  loading="lazy"
+                />
               </Reveal>
-            ))}
-          </ol>
+            ) : null}
+          </div>
         </div>
       </section>
 
@@ -176,18 +216,46 @@ export default function ServicePageLayout({
             />
           </div>
 
-          <ul className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {service.benefits.map((benefit, i) => (
-              <Reveal key={benefit} delay={i * 0.07}>
-                <li className="flex items-start gap-3 rounded-card border border-border-hairline bg-surface p-5">
-                  <CheckIcon />
-                  <span className="text-sm leading-relaxed text-ivory-text/80">
-                    {benefit}
-                  </span>
-                </li>
+          <div
+            className={[
+              "mt-12",
+              benefitsImage
+                ? "grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-12"
+                : "",
+            ].join(" ")}
+          >
+            <ul
+              className={
+                benefitsImage
+                  ? "grid grid-cols-1 gap-4"
+                  : "grid grid-cols-1 gap-4 sm:grid-cols-2"
+              }
+            >
+              {service.benefits.map((benefit, i) => (
+                <Reveal key={benefit} delay={i * 0.07}>
+                  <li className="flex items-start gap-3 rounded-card border border-border-hairline bg-surface p-5">
+                    <CheckIcon />
+                    <span className="text-sm leading-relaxed text-ivory-text/80">
+                      {benefit}
+                    </span>
+                  </li>
+                </Reveal>
+              ))}
+            </ul>
+
+            {benefitsImage ? (
+              <Reveal delay={0.1}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={benefitsImage}
+                  alt={benefitsImageAlt ?? `${service.name} benefits`}
+                  className="w-full object-cover"
+                  style={{ aspectRatio: "4 / 5" }}
+                  loading="lazy"
+                />
               </Reveal>
-            ))}
-          </ul>
+            ) : null}
+          </div>
         </div>
       </section>
 

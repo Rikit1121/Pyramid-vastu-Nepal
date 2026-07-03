@@ -39,15 +39,8 @@ export default async function AdvisorSection() {
           />
           <Reveal delay={0.08}>
             <p className="mt-5 text-base leading-relaxed text-ivory-text/65">
-              13+ years serving Nepal. Certified by India&rsquo;s 48-year-old
-              Jeeten Pyramid institute. Call{" "}
-              <a
-                href="tel:9851151618"
-                className="text-copper transition-colors hover:text-gold-line"
-              >
-                985-115-1618
-              </a>{" "}
-              or reach us on WhatsApp — we respond promptly.
+              Reach us on WhatsApp for a quick response — we&rsquo;re here to
+              answer your questions about Vastu advisory and healing therapy.
             </p>
           </Reveal>
         </div>

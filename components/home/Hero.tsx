@@ -123,13 +123,24 @@ export default function Hero() {
           yantras — rooted in ancient Nepali tradition.
         </motion.p>
 
-        <motion.div variants={item} className="mt-9">
+        <motion.div
+          variants={item}
+          className="mt-9 flex flex-wrap items-center justify-center gap-4"
+        >
           <Link
             href="/vastu-advisory"
             className="inline-flex h-12 items-center justify-center rounded-btn bg-copper px-8 text-sm font-medium text-ivory-text transition-shadow duration-200 hover:shadow-glow-copper"
           >
             Explore Our Services
           </Link>
+          <a
+            href={`https://wa.me/9779851151618?text=${encodeURIComponent("Namaste! I'd like to book a session with Pyramid Vaastu Nepal. Could you please share your availability?")}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-12 items-center justify-center rounded-btn border border-ivory-text/30 px-8 text-sm font-medium text-ivory-text transition-colors duration-200 hover:border-copper hover:text-copper"
+          >
+            Book Appointment
+          </a>
         </motion.div>
       </motion.div>
     </section>

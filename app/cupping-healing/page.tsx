@@ -16,6 +16,11 @@ export default async function CuppingHealingPage() {
     <ServicePageLayout
       service={service}
       heroImage={service.heroImage}
+      pageBackgroundImage="/images/background5.png"
+      processImage="/images/Healing.png"
+      processImageAlt="Cupping therapy session setting"
+      benefitsImage="images/Cupping.png"
+      benefitsImageAlt="Calm wellness and body healing"
       advisor={advisor}
     />
   );

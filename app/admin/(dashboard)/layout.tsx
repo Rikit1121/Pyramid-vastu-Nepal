@@ -58,6 +58,12 @@ export default async function AdminDashboardLayout({
                 Advisors
               </Link>
               <Link
+                href="/admin/blog"
+                className="text-ivory-text/70 transition-colors duration-200 hover:text-ivory-text"
+              >
+                Blog
+              </Link>
+              <Link
                 href="/"
                 className="text-ivory-text/70 transition-colors duration-200 hover:text-ivory-text"
               >

@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { href: "/vastu-advisory", label: "Vastu Advisory" },
   { href: "/cupping-healing", label: "Cupping & Healing" },
   { href: "/shop", label: "Shop" },
+  { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ] as const;
