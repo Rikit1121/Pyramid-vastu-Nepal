@@ -23,6 +23,10 @@ export const metadata: Metadata = {
   },
   description:
     "Premium Vastu advisory, cupping & healing therapy, and handcrafted pyramid yantras — rooted in Nepali tradition.",
+  icons: {
+    icon: "/images/favicon-32.png",
+    apple: "/images/favicon-128.png",
+  },
 };
 
 export default function RootLayout({

@@ -101,12 +101,24 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-3">
           {/* Brand */}
           <div>
-            <p className="font-display text-lg tracking-wide text-ivory-text">
-              Pyramid Vaastu Nepal
-            </p>
-            <p className="mt-1 text-[10px] uppercase tracking-[0.25em] text-copper">
-              Power of Pyramid
-            </p>
+            <div className="flex items-center gap-3">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/logo.png"
+                alt=""
+                width={32}
+                height={32}
+                className="h-8 w-8 shrink-0 rounded-full"
+              />
+              <div>
+                <p className="font-display text-lg tracking-wide text-ivory-text">
+                  Pyramid Vaastu Nepal
+                </p>
+                <p className="mt-1 text-[10px] uppercase tracking-[0.25em] text-copper">
+                  Power of Pyramid
+                </p>
+              </div>
+            </div>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-ivory-text/55">
               {FOOTER_TAGLINE}
             </p>
@@ -172,11 +184,48 @@ export default function Footer() {
         </div>
 
         {/* Bottom row */}
-        <div className="mt-12 flex flex-col items-center gap-2 border-t border-border-hairline pt-6 sm:flex-row sm:justify-between">
-          <p className="text-xs text-ivory-text/35">
-            © {new Date().getFullYear()} Pyramid Vaastu Nepal. All rights reserved.
+        <div className="mt-12 border-t border-border-hairline pt-6">
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-xs text-ivory-text/35">
+              © {new Date().getFullYear()} Pyramid Vaastu Nepal. All rights
+              reserved.
+            </p>
+
+            <nav
+              aria-label="Legal"
+              className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-ivory-text/35"
+            >
+              <Link
+                href="/privacy"
+                className="transition-colors duration-200 hover:text-ivory-text"
+              >
+                Privacy Policy
+              </Link>
+              <span aria-hidden="true">·</span>
+              <Link
+                href="/terms"
+                className="transition-colors duration-200 hover:text-ivory-text"
+              >
+                Terms of Use
+              </Link>
+            </nav>
+
+            <p className="text-xs text-ivory-text/35">
+              Built by{" "}
+              <a
+                href="https://merowworks.tech/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-ivory-text/55 transition-colors duration-200 hover:text-gold-line"
+              >
+                Meroworks
+              </a>
+            </p>
+          </div>
+
+          <p className="mt-3 text-center text-xs text-ivory-text/35 sm:text-left">
+            Kathmandu, Nepal
           </p>
-          <p className="text-xs text-ivory-text/35">Kathmandu, Nepal</p>
         </div>
       </div>
     </footer>

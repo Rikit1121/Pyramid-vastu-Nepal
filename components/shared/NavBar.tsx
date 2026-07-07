@@ -53,14 +53,24 @@ export default function NavBar() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex flex-col leading-none"
+            className="flex items-center gap-3 leading-none"
             aria-label="Pyramid Vastu Yantra — home"
           >
-            <span className="font-display text-[17px] tracking-wide text-ivory-text">
-              Pyramid Vaastu
-            </span>
-            <span className="text-[9px] uppercase tracking-[0.3em] text-gold-line">
-              Nepal · Power of Pyramid
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/logo.png"
+              alt=""
+              width={36}
+              height={36}
+              className="h-9 w-9 shrink-0 rounded-full"
+            />
+            <span className="flex flex-col">
+              <span className="font-display text-[17px] tracking-wide text-ivory-text">
+                Pyramid Vaastu
+              </span>
+              <span className="text-[9px] uppercase tracking-[0.3em] text-gold-line">
+                Nepal · Power of Pyramid
+              </span>
             </span>
           </Link>
 
