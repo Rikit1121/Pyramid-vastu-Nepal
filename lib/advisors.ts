@@ -52,22 +52,32 @@ export async function getAdvisorById(id: string): Promise<Advisor | null> {
  * the DB is unreachable — so the site always shows something.
  */
 export async function getPrimaryAdvisor(): Promise<Advisor> {
-  return withQueryTimeout(fetchPrimaryAdvisor(), STATIC_ADVISOR);
+  const advisors = await getActiveAdvisors();
+  return advisors[0] ?? STATIC_ADVISOR;
 }
 
-async function fetchPrimaryAdvisor(): Promise<Advisor> {
+/** All active advisors for public pages — falls back to static advisor if empty. */
+export async function getActiveAdvisors(): Promise<Advisor[]> {
+  return withQueryTimeout(fetchActiveAdvisors(), [STATIC_ADVISOR]);
+}
+
+async function fetchActiveAdvisors(): Promise<Advisor[]> {
   try {
     const supabase = await createServerSupabase();
     const { data, error } = await supabase
       .from("advisors")
       .select("*")
       .eq("is_active", true)
-      .order("created_at", { ascending: true })
-      .limit(1)
-      .maybeSingle();
-    if (error || !data) return STATIC_ADVISOR;
-    return rowToAdvisor(data);
+      .order("created_at", { ascending: true });
+    if (error) throw error;
+    const advisors = (data ?? []).map(rowToAdvisor);
+    return advisors.length ? advisors : [STATIC_ADVISOR];
   } catch {
-    return STATIC_ADVISOR;
+    return [STATIC_ADVISOR];
   }
+}
+
+async function fetchPrimaryAdvisor(): Promise<Advisor> {
+  const advisors = await fetchActiveAdvisors();
+  return advisors[0] ?? STATIC_ADVISOR;
 }

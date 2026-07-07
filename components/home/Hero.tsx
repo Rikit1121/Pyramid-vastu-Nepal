@@ -105,7 +105,7 @@ export default function Hero() {
           variants={item}
           className="mb-5 text-[11px] uppercase tracking-[0.35em] text-gold-line"
         >
-          Ancient Geometry, Modern Living
+          Create Balanced Spaces for Better Living
         </motion.p>
 
         <motion.h1
@@ -119,7 +119,7 @@ export default function Hero() {
           variants={item}
           className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-ivory-text/70 sm:text-lg"
         >
-          Vastu advisory, cupping &amp; healing therapy, and handcrafted pyramid
+          Vaastu advisory, geopathic stress assessment, and handcrafted pyramid
           yantras — rooted in ancient Nepali tradition.
         </motion.p>
 
@@ -128,7 +128,7 @@ export default function Hero() {
           className="mt-9 flex flex-wrap items-center justify-center gap-4"
         >
           <Link
-            href="/vastu-advisory"
+            href="/vaastu-advisory"
             className="inline-flex h-12 items-center justify-center rounded-btn bg-copper px-8 text-sm font-medium text-ivory-text transition-shadow duration-200 hover:shadow-glow-copper"
           >
             Explore Our Services

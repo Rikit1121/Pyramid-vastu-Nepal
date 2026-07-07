@@ -18,11 +18,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Pyramid Vastu Yantra",
-    template: "%s | Pyramid Vastu Yantra",
+    default: "Pyramid Vaastu Yantra",
+    template: "%s | Pyramid Vaastu Yantra",
   },
   description:
-    "Premium Vastu advisory, cupping & healing therapy, and handcrafted pyramid yantras — rooted in Nepali tradition.",
+    "Premium Vaastu advisory, geopathic stress assessment, and handcrafted pyramid yantras — rooted in Nepali tradition.",
   icons: {
     icon: "/images/favicon-32.png",
     apple: "/images/favicon-128.png",

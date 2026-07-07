@@ -1,12 +1,12 @@
 import type { Service, Advisor } from "@/types";
 import Reveal from "@/components/shared/Reveal";
 import RevealText from "@/components/shared/RevealText";
-import AdvisorCard from "@/components/shared/AdvisorCard";
+import AdvisorGrid from "@/components/shared/AdvisorGrid";
 
 type ServicePageLayoutProps = {
   service: Service;
   heroImage: string;
-  advisor: Advisor;
+  advisors: Advisor[];
   /** Optional full-page background (e.g. former hero art moved behind content). */
   pageBackgroundImage?: string;
   heroImageAlt?: string;
@@ -40,7 +40,7 @@ function CheckIcon() {
 export default function ServicePageLayout({
   service,
   heroImage,
-  advisor,
+  advisors,
   heroImageAlt,
   pageBackgroundImage,
   processImage,
@@ -270,7 +270,11 @@ export default function ServicePageLayout({
             />
             <RevealText
               as="h2"
-              text="Book a session with our advisor"
+              text={
+                advisors.length > 1
+                  ? "Book a session with our advisors"
+                  : "Book a session with our advisor"
+              }
               className="font-display text-3xl leading-tight tracking-tight text-ivory-text sm:text-4xl"
             />
             <RevealText
@@ -281,12 +285,10 @@ export default function ServicePageLayout({
             />
           </div>
 
-          <Reveal className="mx-auto mt-12 max-w-md">
-            <AdvisorCard
-              advisor={advisor}
-              whatsappMessage={service.advisorWhatsAppMessage}
-            />
-          </Reveal>
+          <AdvisorGrid
+            advisors={advisors}
+            whatsappMessage={service.advisorWhatsAppMessage}
+          />
         </div>
       </section>
     </article>

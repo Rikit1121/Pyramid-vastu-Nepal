@@ -2,6 +2,7 @@ import type { Product } from "@/types";
 import type { ProductRow } from "@/lib/supabase";
 import { createServerSupabase } from "@/lib/supabase-server";
 import { withQueryTimeout } from "@/lib/supabase-timeout";
+import { normalizeProductPrice } from "@/lib/price";
 
 /**
  * Live product data access (Phase 8 cutover).
@@ -16,7 +17,7 @@ export function rowToProduct(row: ProductRow): Product {
     id: row.id,
     slug: row.slug,
     name: row.name,
-    price: Number(row.price),
+    price: normalizeProductPrice(row.price),
     description: row.description,
     benefits: row.benefits ?? undefined,
     material: row.material ?? undefined,

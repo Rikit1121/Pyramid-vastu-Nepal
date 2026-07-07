@@ -45,14 +45,14 @@ export default function BrandIntro() {
             />
             <Reveal delay={0.1}>
               <p className="mt-6 text-base leading-relaxed text-ivory-text/70">
-                Rooted in the timeless principles of Vastu Shastra and sacred
+                Rooted in the timeless principles of Vaastu Shastra and sacred
                 geometry, we help you bring harmony to the spaces you live and
-                work in. Every consultation, therapy, and handcrafted yantra is
+                work in. Every consultation, assessment, and handcrafted yantra is
                 guided by the same belief — a space in balance supports a life
                 in balance.
               </p>
               <p className="mt-4 text-base leading-relaxed text-ivory-text/70">
-                Vastu defects can be corrected using Pyramid Yantra without any
+                Vaastu defects can be corrected using Pyramid Yantra without any
                 breaking or cracking of the structure — fast, simple, and modern
                 techniques used across Nepal and beyond.
               </p>

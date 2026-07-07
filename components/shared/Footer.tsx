@@ -8,8 +8,8 @@ import {
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
-  { href: "/vastu-advisory", label: "Vastu Advisory" },
-  { href: "/cupping-healing", label: "Cupping & Healing" },
+  { href: "/vaastu-advisory", label: "Vaastu Advisory" },
+  { href: "/geopathic-stress", label: "Geopathic Stress" },
   { href: "/shop", label: "Shop" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },

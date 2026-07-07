@@ -117,7 +117,7 @@ export default function AdvisorForm(props: Props) {
           name="role"
           type="text"
           defaultValue={advisor?.role ?? ""}
-          placeholder="e.g. Certified Pyramid Vastu Expert · 13 Years in Practice"
+          placeholder="e.g. Certified Pyramid Vaastu Expert · 13 Years in Practice"
           className={inputClass}
         />
       </div>

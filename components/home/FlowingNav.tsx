@@ -2,13 +2,13 @@ import FlowingMenu, { type FlowingMenuItem } from "@/components/shared/FlowingMe
 
 const ITEMS: FlowingMenuItem[] = [
   {
-    link: "/vastu-advisory",
-    text: "Vastu Advisory",
+    link: "/vaastu-advisory",
+    text: "Vaastu Advisory",
     image: "/images/background4.png",
   },
   {
-    link: "/cupping-healing",
-    text: "Cupping & Healing",
+    link: "/geopathic-stress",
+    text: "Geopathic Stress",
     image: "/images/Healing_Therapy.png",
   },
   {

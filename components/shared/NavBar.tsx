@@ -7,8 +7,8 @@ import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
-  { href: "/vastu-advisory", label: "Vastu Advisory" },
-  { href: "/cupping-healing", label: "Cupping & Healing" },
+  { href: "/vaastu-advisory", label: "Vaastu Advisory" },
+  { href: "/geopathic-stress", label: "Geopathic Stress" },
   { href: "/shop", label: "Shop" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
@@ -54,7 +54,7 @@ export default function NavBar() {
           <Link
             href="/"
             className="flex items-center gap-3 leading-none"
-            aria-label="Pyramid Vastu Yantra — home"
+            aria-label="Pyramid Vaastu Yantra — home"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -151,7 +151,7 @@ export default function NavBar() {
 
         {/* Bottom tagline */}
         <p className="pb-10 text-center text-[10px] uppercase tracking-[0.3em] text-gold-line/50">
-          Vastu · Healing · Sacred Geometry
+          Vaastu · Geopathic Stress · Sacred Geometry
         </p>
       </div>
     </>

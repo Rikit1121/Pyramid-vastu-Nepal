@@ -22,7 +22,7 @@ export default function BookSessionSection() {
         />
         <RevealText
           as="p"
-          text="Whether you're seeking Vastu alignment for your space or a healing therapy session, we're here to guide you. Reach out on WhatsApp for a quick response."
+          text="Whether you're seeking Vaastu alignment for your space or a geopathic stress assessment, we're here to guide you. Reach out on WhatsApp for a quick response."
           delay={0.08}
           className="mt-5 text-base leading-relaxed text-ivory-text/70"
         />

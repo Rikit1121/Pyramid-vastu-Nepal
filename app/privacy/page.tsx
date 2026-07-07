@@ -57,8 +57,8 @@ export default function PrivacyPage() {
               </h2>
               <p className="mt-3">
                 We use this information solely to respond to your enquiries,
-                schedule consultations, provide Vastu advisory and healing
-                services, and follow up on product enquiries. We do not sell or
+                schedule consultations, provide Vaastu advisory, geopathic stress
+                assessment, and follow up on product enquiries. We do not sell or
                 rent your personal information to third parties.
               </p>
             </div>

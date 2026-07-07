@@ -12,14 +12,14 @@ import {
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with Pyramid Vastu Yantra — Vastu advisory, healing therapy, and handcrafted sacred geometry in Kathmandu, Nepal.",
+    "Get in touch with Pyramid Vaastu Yantra — Vaastu advisory, geopathic stress assessment, and handcrafted sacred geometry in Kathmandu, Nepal.",
 };
 
 // Placeholder — swap for a real video ID from the brand's YouTube channel.
 const YOUTUBE_VIDEO_ID = "gRo9XeFVgZU";
 
 const GENERAL_MESSAGE =
-  "Namaste! I'd like to get in touch about your Vastu advisory and healing services.";
+  "Namaste! I'd like to get in touch about your Vaastu advisory and geopathic stress services.";
 
 // Inline SVG social icons — 1.5px stroke, outline only (lucide-react v1 dropped brand icons)
 function IconInstagram() {
@@ -224,7 +224,7 @@ export default function ContactPage() {
           <div className="relative w-full overflow-hidden" style={{ paddingBottom: "56.25%" }}>
             <iframe
               src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}`}
-              title="Pyramid Vastu Yantra — introduction"
+              title="Pyramid Vaastu Yantra — introduction"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               className="absolute inset-0 h-full w-full border-0"

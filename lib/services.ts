@@ -14,13 +14,13 @@ export const ADVISOR: Advisor = {
 type ServiceData = Service & { heroImage: string };
 
 export const SERVICES: Record<Service["slug"], ServiceData> = {
-  "vastu-advisory": {
-    slug: "vastu-advisory",
-    name: "Vastu Advisory",
+  "vaastu-advisory": {
+    slug: "vaastu-advisory",
+    name: "Vaastu Advisory",
     tagline:
-      "Align your home or workplace with the timeless principles of Vastu Shastra.",
+      "Align your home or workplace with the timeless principles of Vaastu Shastra.",
     overview:
-      "Vastu Shastra is the ancient Vedic science of spatial harmony — a system refined over 5,000 years that maps how the flow of energy through your living and working spaces affects every dimension of your life. From the quality of your sleep and the clarity of your thinking, to the health of your relationships and the growth of your business, the energy configuration of your space plays a direct and measurable role.\n\nOur Vastu Advisory service assesses your space across all key dimensions: directional alignment, elemental balance, Brahmasthan (centre) energy, room-by-room function, and the placement of furniture and structural elements. We then provide a clear, practical correction plan — using pyramid yantras, directional adjustments, and energy tools available in our shop — that requires no construction, no breaking, and no disruption to your daily life.",
+      "Vaastu Shastra is the ancient Vedic science of spatial harmony — a system refined over 5,000 years that maps how the flow of energy through your living and working spaces affects every dimension of your life. From the quality of your sleep and the clarity of your thinking, to the health of your relationships and the growth of your business, the energy configuration of your space plays a direct and measurable role.\n\nOur Vaastu Advisory service assesses your space across all key dimensions: directional alignment, elemental balance, Brahmasthan (centre) energy, room-by-room function, and the placement of furniture and structural elements. We then provide a clear, practical correction plan — using pyramid yantras, directional adjustments, and energy tools available in our shop — that requires no construction, no breaking, and no disruption to your daily life.",
     process: [
       {
         title: "Initial Consultation",
@@ -30,12 +30,12 @@ export const SERVICES: Record<Service["slug"], ServiceData> = {
       {
         title: "Space Analysis",
         description:
-          "Using your floor plan and, where needed, a site visit, we map the directional zones (Vastu Mandala), identify elemental imbalances, and note any structural factors — entrance direction, kitchen placement, bathroom locations, Brahmasthan obstructions — that may be affecting the energy of the space.",
+          "Using your floor plan and, where needed, a site visit, we map the directional zones (Vaastu Mandala), identify elemental imbalances, and note any structural factors — entrance direction, kitchen placement, bathroom locations, Brahmasthan obstructions — that may be affecting the energy of the space.",
       },
       {
         title: "Personalised Recommendations",
         description:
-          "We provide a written report with prioritised, practical remedies — from furniture placement and colour guidance to the use of pyramids, yantras, and other Vastu tools available in our shop.",
+          "We provide a written report with prioritised, practical remedies — from furniture placement and colour guidance to the use of pyramids, yantras, and other Vaastu tools available in our shop.",
       },
       {
         title: "Follow-Up Review",
@@ -51,48 +51,49 @@ export const SERVICES: Record<Service["slug"], ServiceData> = {
       "Practical, non-invasive remedies suited to modern living",
     ],
     advisorWhatsAppMessage:
-      "Namaste! I'd like to book a Vastu consultation for my space. Could you please share your availability and session details?",
+      "Namaste! I'd like to book a Vaastu consultation for my space. Could you please share your availability and session details?",
     heroImage: "/images/background3.png",
   },
 
-  "cupping-healing": {
-    slug: "cupping-healing",
-    name: "Cupping & Healing Therapy",
+  "geopathic-stress": {
+    slug: "geopathic-stress",
+    name: "Geopathic Stress Assessment & Remedy",
     tagline:
-      "Restore circulation, release tension, and rebalance your body's natural energy flow.",
+      "Identify and neutralise the hidden earth energies affecting your health, sleep, and well-being.",
     overview:
-      "Cupping therapy is one of the world's oldest physical healing modalities — practiced for thousands of years across Nepali, Chinese, and Ayurvedic traditions. By creating gentle suction at specific meridian points and body zones, cupping lifts underlying tissue, promotes deep blood flow, releases muscular stagnation, and encourages the movement of blocked energy through the body.\n\nAt Pyramid Vaastu Nepal, we combine traditional cupping with complementary energy-healing techniques — including pyramid energy tools and healing therapy — to address not just the physical symptoms but the energetic roots of chronic tension, fatigue, and stress. This integrated approach means our sessions support you on multiple levels simultaneously: physical release, energetic rebalancing, and deep nervous system rest.\n\nSessions are available for individuals dealing with chronic back, neck, and shoulder tension; recurring headaches; anxiety and poor sleep; and general fatigue or energetic depletion. No prior experience with cupping or energy healing is required — our therapist will guide you through every step.",
+      "Geopathic stress refers to harmful earth energies — underground water veins, geological fault lines, and natural radiation zones — that emanate from the earth and disturb the energy field of any space built above them. The word itself comes from the Greek 'geo' (earth) and 'pathos' (suffering): literally, suffering caused by the earth beneath us.\n\nUnlike Vaastu doshas, which arise from the design and layout of a structure, geopathic stress originates from the land itself — and because it operates at a subtle energetic level, it often goes undetected while causing chronic, persistent health and well-being problems in the people living or working in the affected space. At Pyramid Vaastu Nepal, we use a combination of traditional detection methods (dowsing rods, pendulums) and specialised pyramid yantra tools to identify and neutralise geopathic stress zones — without any construction, drilling, or disruption to your space.",
     process: [
       {
-        title: "Health & Wellness Intake",
+        title: "Initial Assessment",
         description:
-          "Your first session begins with a conversation about your health history, current concerns, stress levels, and specific areas of tension or discomfort.",
+          "We begin with a detailed consultation about the health patterns, sleep quality, and recurring problems experienced by the people in the space — as these often reveal the signature of geopathic stress long before any instruments are used.",
       },
       {
-        title: "Preparation & Points Selection",
+        title: "Detection & Mapping",
         description:
-          "Based on your intake, we identify the appropriate meridian points and body zones for cupping, and prepare the therapy area for a calm, grounded experience.",
+          "Using dowsing rods, pendulums, and energy scanning techniques refined over 13 years of practice, we identify the precise location, direction, and intensity of geopathic stress lines running through your home or office.",
       },
       {
-        title: "Cupping Session",
+        title: "Pyramid Yantra Placement",
         description:
-          "We apply cups — typically along the back, shoulders, and key meridian lines — leaving them in place for 10–15 minutes. Stationary and gliding techniques are used depending on your needs.",
+          "Specialised geopathic stress neutraliser yantras and copper pyramid tools are placed at the identified stress points — under beds, at corners of the property, and at key intersection zones — to absorb, reflect, and transmute the harmful earth rays.",
       },
       {
-        title: "Closing & Integration",
+        title: "Follow-up & Verification",
         description:
-          "The session closes with light energy work and breathing guidance. We share care notes and, where relevant, suggest complementary Vastu or yantra tools to support ongoing healing.",
+          "We return or check in after an agreed period to verify that the remedies are working and that the energy field of the space has stabilised. Adjustments are made if needed, and guidance is provided for ongoing maintenance.",
       },
     ],
     benefits: [
-      "Relief from chronic back, neck, and shoulder tension",
-      "Improved circulation and lymphatic drainage",
-      "Reduced anxiety and better sleep",
-      "Release of deep-seated muscular stagnation",
-      "A grounded, renewed sense of physical and energetic ease",
+      "Improved sleep quality and deeper rest",
+      "Reduced chronic fatigue, headaches, and morning grogginess",
+      "Relief from persistent anxiety, depression, and nervousness",
+      "Better concentration and mental clarity at home and work",
+      "Healthier, more harmonious environment for the whole family",
+      "No construction, drilling, or structural changes required",
     ],
     advisorWhatsAppMessage:
-      "Namaste! I'd like to book a cupping and healing therapy session. Could you please share your availability and session details?",
+      "Namaste! I'm interested in a Geopathic Stress assessment for my space. Could you please share your availability and session details?",
     heroImage: "/images/Healing_Therapy.png",
   },
 };

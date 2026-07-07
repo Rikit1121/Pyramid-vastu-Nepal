@@ -4,20 +4,20 @@ import RevealText from "@/components/shared/RevealText";
 
 const SERVICES = [
   {
-    href: "/vastu-advisory",
-    name: "Vastu Advisory",
+    href: "/vaastu-advisory",
+    name: "Vaastu Advisory",
     description:
-      "Align your home or workplace with the principles of Vastu Shastra — directional balance, energy flow, and placement guidance tailored to your space. Vastu defects corrected without breaking or cracking the structure.",
+      "Align your home or workplace with the principles of Vaastu Shastra — directional balance, energy flow, and placement guidance tailored to your space. Vaastu defects corrected without breaking or cracking the structure.",
     image: "/images/background4.png",
-    imageAlt: "Vastu Advisory — sacred geometry consultation",
+    imageAlt: "Vaastu Advisory — sacred geometry consultation",
   },
   {
-    href: "/cupping-healing",
-    name: "Cupping & Healing Therapy",
+    href: "/geopathic-stress",
+    name: "Geopathic Stress",
     description:
-      "Traditional cupping and energy-healing therapy to release tension, restore circulation, and rebalance the body's natural flow — combining ancient Nepali and Eastern healing traditions.",
+      "Identify and neutralise the hidden earth energies affecting your health, sleep, and well-being — using dowsing, pendulums, and pyramid yantra remedies without construction or disruption.",
     image: "/images/Healing_Therapy.png",
-    imageAlt: "Cupping & Healing Therapy session",
+    imageAlt: "Geopathic Stress assessment and remedy",
   },
 ] as const;
 
@@ -58,7 +58,7 @@ export default function ServicesBlock() {
           />
           <RevealText
             as="p"
-            text="Guidance and therapy grounded in tradition — the heart of what we do."
+            text="Guidance and assessment grounded in tradition — the heart of what we do."
             className="mt-5 text-base leading-relaxed text-ivory-text/70"
           />
         </div>
@@ -78,7 +78,6 @@ export default function ServicesBlock() {
                     className="h-full w-full object-cover transition-transform duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
                     loading="lazy"
                   />
-                  {/* Subtle gradient at bottom for text legibility */}
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-surface/80 to-transparent" />
                 </div>
                 <div className="flex flex-1 flex-col p-7">

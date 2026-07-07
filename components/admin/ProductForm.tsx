@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import Link from "next/link";
 import type { Product } from "@/types";
 import type { ActionState } from "@/app/admin/actions";
+import { normalizeProductPrice } from "@/lib/price";
 
 type ProductFormProps = {
   mode: "new" | "edit";
@@ -39,7 +40,7 @@ export default function ProductForm({ mode, action, product }: ProductFormProps)
           type="text"
           required
           defaultValue={product?.name ?? ""}
-          placeholder="Copper Vastu Pyramid"
+          placeholder="Copper Vaastu Pyramid"
           className={inputClass}
         />
       </div>
@@ -69,11 +70,13 @@ export default function ProductForm({ mode, action, product }: ProductFormProps)
           <input
             id="price"
             name="price"
-            type="number"
-            min="0"
-            step="1"
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
             required
-            defaultValue={product?.price ?? ""}
+            defaultValue={
+              product != null ? String(normalizeProductPrice(product.price)) : ""
+            }
             placeholder="3500"
             className={inputClass}
           />

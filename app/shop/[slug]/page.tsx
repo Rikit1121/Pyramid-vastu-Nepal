@@ -170,7 +170,7 @@ export default async function ProductDetailPage({ params }: Props) {
           {product.benefits && product.benefits.length > 0 && (
             <div className="mt-8">
               <p className="mb-4 text-[10px] uppercase tracking-[0.25em] text-gold-line">
-                Vastu Significance
+                Vaastu Significance
               </p>
               <ul className="space-y-2.5">
                 {product.benefits.map((b) => (

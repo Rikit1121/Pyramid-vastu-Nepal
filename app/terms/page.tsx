@@ -56,7 +56,7 @@ export default function TermsPage() {
                 Services &amp; consultations
               </h2>
               <p className="mt-3">
-                Vastu advisory, cupping &amp; healing therapy, and product
+                Vaastu advisory, geopathic stress assessment, and product
                 enquiries are arranged directly with our team. Appointments and
                 pricing are confirmed on a case-by-case basis. Nothing on this
                 website constitutes a binding contract until agreed in writing
@@ -69,7 +69,7 @@ export default function TermsPage() {
                 Disclaimer
               </h2>
               <p className="mt-3">
-                Vastu and healing practices are complementary approaches. They
+                Vaastu and geopathic stress practices are complementary approaches. They
                 are not a substitute for professional medical, legal, or
                 financial advice. Results vary by individual and circumstance.
                 We make no guarantees of specific outcomes.

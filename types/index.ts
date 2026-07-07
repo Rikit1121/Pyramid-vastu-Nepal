@@ -7,7 +7,7 @@ export type Product = {
   name: string;
   price: number; // NPR
   description: string;
-  benefits?: string[]; // Vastu/energy significance
+  benefits?: string[]; // Vaastu/energy significance
   material?: string;
   size?: string;
   images: string[]; // Supabase Storage URLs
@@ -17,7 +17,7 @@ export type Product = {
 
 // Static content initially (only 2 services, no admin CRUD yet).
 export type Service = {
-  slug: "vastu-advisory" | "cupping-healing";
+  slug: "vaastu-advisory" | "geopathic-stress";
   name: string;
   tagline: string;
   overview: string;

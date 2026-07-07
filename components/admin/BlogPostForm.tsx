@@ -69,7 +69,7 @@ export default function BlogPostForm({ mode, action, post }: BlogPostFormProps) 
           type="text"
           required
           defaultValue={post?.title ?? ""}
-          placeholder="What is Vastu Shastra and why does it matter?"
+          placeholder="What is Vaastu Shastra and why does it matter?"
           className={inputClass}
           onChange={(e) => {
             if (mode === "new") {

@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { createServerSupabase, getServerUser } from "@/lib/supabase-server";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database, ProductInsert } from "@/lib/supabase";
+import { normalizeProductPrice, parseNprPrice } from "@/lib/price";
 
 const BUCKET = "product-images";
 
@@ -45,9 +46,9 @@ function validate(fields: ReturnType<typeof parseForm>): string | null {
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(fields.slug)) {
     return "Slug must be lowercase letters, numbers, and hyphens only.";
   }
-  const price = Number(fields.priceRaw);
-  if (!fields.priceRaw || Number.isNaN(price) || price < 0) {
-    return "Price must be a number of 0 or more.";
+  const price = parseNprPrice(fields.priceRaw);
+  if (price === null) {
+    return "Price must be a whole number of 0 or more.";
   }
   return null;
 }
@@ -140,7 +141,7 @@ export async function createProduct(
   const insert: ProductInsert = {
     slug: fields.slug,
     name: fields.name,
-    price: Number(fields.priceRaw),
+    price: normalizeProductPrice(fields.priceRaw),
     description: fields.description,
     benefits: fields.benefits.length ? fields.benefits : [],
     material: fields.material || null,
@@ -197,7 +198,7 @@ export async function updateProduct(
     .update({
       slug: fields.slug,
       name: fields.name,
-      price: Number(fields.priceRaw),
+      price: normalizeProductPrice(fields.priceRaw),
       description: fields.description,
       benefits: fields.benefits.length ? fields.benefits : [],
       material: fields.material || null,

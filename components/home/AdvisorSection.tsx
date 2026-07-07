@@ -1,16 +1,15 @@
 import Reveal from "@/components/shared/Reveal";
 import RevealText from "@/components/shared/RevealText";
-import AdvisorCard from "@/components/shared/AdvisorCard";
-import { getPrimaryAdvisor } from "@/lib/advisors";
+import AdvisorGrid from "@/components/shared/AdvisorGrid";
+import { getActiveAdvisors } from "@/lib/advisors";
 
 const GENERAL_MESSAGE =
-  "Namaste! I'd like to learn more about your Vastu advisory and healing services. Please share your availability.";
+  "Namaste! I'd like to learn more about your Vaastu advisory and geopathic stress services. Please share your availability.";
 
 export default async function AdvisorSection() {
-  const advisor = await getPrimaryAdvisor();
+  const advisors = await getActiveAdvisors();
   return (
     <section className="relative overflow-hidden border-t border-border-hairline">
-      {/* Background image with deep overlay */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -40,14 +39,13 @@ export default async function AdvisorSection() {
           <Reveal delay={0.08}>
             <p className="mt-5 text-base leading-relaxed text-ivory-text/65">
               Reach us on WhatsApp for a quick response — we&rsquo;re here to
-              answer your questions about Vastu advisory and healing therapy.
+              answer your questions about Vaastu advisory and geopathic stress
+              assessment.
             </p>
           </Reveal>
         </div>
 
-        <Reveal className="mx-auto mt-12 max-w-md" delay={0.1}>
-          <AdvisorCard advisor={advisor} whatsappMessage={GENERAL_MESSAGE} />
-        </Reveal>
+        <AdvisorGrid advisors={advisors} whatsappMessage={GENERAL_MESSAGE} />
       </div>
     </section>
   );

@@ -7,7 +7,7 @@ import BlogCard from "@/components/blog/BlogCard";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Insights on Vastu Shastra, sacred geometry, healing practices, and the principles behind a balanced living and working space.",
+    "Insights on Vaastu Shastra, sacred geometry, geopathic stress, and the principles behind a balanced living and working space.",
 };
 
 export const dynamic = "force-dynamic";
@@ -47,7 +47,7 @@ export default async function BlogIndexPage() {
         />
         <Reveal delay={0.08}>
           <p className="mt-5 text-base leading-relaxed text-ivory-text/65">
-            Practical guidance, traditional wisdom, and real insights on Vastu
+            Practical guidance, traditional wisdom, and real insights on Vaastu
             Shastra, sacred geometry, and healing — written from 13+ years of
             practice in Nepal.
           </p>

@@ -1,40 +1,40 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/shared/Reveal";
 import RevealText from "@/components/shared/RevealText";
-import AdvisorCard from "@/components/shared/AdvisorCard";
-import { getPrimaryAdvisor } from "@/lib/advisors";
+import AdvisorGrid from "@/components/shared/AdvisorGrid";
+import { getActiveAdvisors } from "@/lib/advisors";
 import { OFFICE_ADDRESS, OFFICE_HOURS } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "The story behind Pyramid Vastu Yantra — ancient Vastu tradition, sacred geometry, and handcrafted copper work rooted in Nepal.",
+    "The story behind Pyramid Vaastu Yantra — ancient Vaastu tradition, sacred geometry, and handcrafted copper work rooted in Nepal.",
 };
 
 const CREDIBILITY_POINTS = [
   {
     heading: "Personal, Direct Consultations",
-    body: "Every Vastu consultation and therapy session is led directly by our advisor — no intermediaries, no generic advice. Your space and your concerns are treated as unique.",
+    body: "Every Vaastu consultation and geopathic stress assessment is led directly by our advisor — no intermediaries, no generic advice. Your space and your concerns are treated as unique.",
   },
   {
     heading: "Non-Invasive Corrections",
-    body: "Our pyramid yantra technique corrects Vastu defects without breaking, cracking, or major structural changes — practical remedies suited to modern homes and offices.",
+    body: "Our pyramid yantra technique corrects Vaastu defects without breaking, cracking, or major structural changes — practical remedies suited to modern homes and offices.",
   },
   {
-    heading: "Integrated Vastu & Healing",
-    body: "We address both your environment and your body. Stagnation in the space and stagnation in the body often mirror each other — our practice works on both levels.",
+    heading: "Integrated Vaastu & Geopathic Stress",
+    body: "We address both your built environment and the earth energies beneath it. Stagnation in the space and harmful geopathic lines often mirror each other — our practice works on both levels.",
   },
   {
     heading: "Trust Builds Trust",
-    body: "Our guiding belief is that resolving Vastu defects opens the path to progress. Every recommendation is practical, personalised, and built on the principle that measurable results speak louder than promises.",
+    body: "Our guiding belief is that resolving Vaastu defects opens the path to progress. Every recommendation is practical, personalised, and built on the principle that measurable results speak louder than promises.",
   },
 ] as const;
 
 const GENERAL_MESSAGE =
-  "Namaste! I'd like to learn more about your Vastu advisory and healing services.";
+  "Namaste! I'd like to learn more about your Vaastu advisory and geopathic stress services.";
 
 export default async function AboutPage() {
-  const advisor = await getPrimaryAdvisor();
+  const advisors = await getActiveAdvisors();
   return (
     <article>
       {/* ── Page header ─────────────────────────────────────────────────── */}
@@ -65,7 +65,7 @@ export default async function AboutPage() {
           />
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-ivory-text/65">
-              Vastu advisory, cupping &amp; healing therapy, and handcrafted
+              Vaastu advisory, geopathic stress assessment, and handcrafted
               pyramid yantras — rooted in Kathmandu, guided by tradition.
             </p>
           </Reveal>
@@ -84,13 +84,13 @@ export default async function AboutPage() {
             <Reveal delay={0.1}>
             <p className="mt-6 text-base leading-[1.75] text-ivory-text/70">
               Pyramid Vaastu Nepal was founded on a single conviction: that
-              Vastu Shastra is not folklore — it is a precise, testable
+              Vaastu Shastra is not folklore — it is a precise, testable
               framework for how energy moves through built space. We have seen
               it work quietly and consistently in homes, offices, and businesses
               across Kathmandu and Nepal.
             </p>
             <p className="mt-5 text-base leading-[1.75] text-ivory-text/70">
-              Our technique corrects Vastu defects using Pyramid Yantra — no
+              Our technique corrects Vaastu defects using Pyramid Yantra — no
               breaking, no cracking, no major structural changes. Fast, simple,
               and modern remedies that fit the way people actually live today.
             </p>
@@ -106,16 +106,16 @@ export default async function AboutPage() {
             <Reveal delay={0.1}>
             <p className="mt-6 text-base leading-[1.75] text-ivory-text/70">
               &ldquo;Trust builds trust.&rdquo; This is the phrase we live by.
-              Resolving Vastu defects opens the path to progress — in sleep,
+              Resolving Vaastu defects opens the path to progress — in sleep,
               focus, relationships, finances. When the directional zones of a
               home carry the right elements and the geometry resonates, things
               shift — sometimes gradually, sometimes with surprising speed.
             </p>
             <p className="mt-5 text-base leading-[1.75] text-ivory-text/70">
-              We also work with the body: our cupping and healing therapy
-              practice applies the same logic of balance to the physical form.
-              Stagnation in the space and stagnation in the body often mirror
-              each other. We address both.
+              We also assess geopathic stress: harmful earth energies beneath
+              your home or office that can affect sleep, health, and well-being
+              even when the building layout is correct. We identify and neutralise
+              these zones using dowsing, pendulums, and pyramid yantra remedies.
             </p>
             </Reveal>
           </div>
@@ -252,15 +252,13 @@ export default async function AboutPage() {
             />
             <RevealText
               as="p"
-              text="Our practice is personal. Every consultation and therapy session is led directly by our advisor — no intermediaries."
+              text="Our practice is personal. Every consultation and assessment is led directly by our advisors — no intermediaries."
               delay={0.1}
               className="mt-5 text-base leading-relaxed text-ivory-text/65"
             />
           </div>
 
-          <Reveal className="mx-auto mt-12 max-w-md">
-            <AdvisorCard advisor={advisor} whatsappMessage={GENERAL_MESSAGE} />
-          </Reveal>
+          <AdvisorGrid advisors={advisors} whatsappMessage={GENERAL_MESSAGE} />
         </div>
       </section>
     </article>
