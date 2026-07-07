@@ -72,6 +72,45 @@ async function uploadImages(
   return urls;
 }
 
+async function uploadBlogCover(
+  supabase: DbClient,
+  slug: string,
+  file: File,
+): Promise<string> {
+  const ext = file.name.includes(".") ? file.name.split(".").pop() : "jpg";
+  const path = `blog/${slug}/${crypto.randomUUID()}.${ext}`;
+  const { error } = await supabase.storage
+    .from(BUCKET)
+    .upload(path, file, { contentType: file.type || undefined, upsert: false });
+  if (error) throw new Error(`Cover image upload failed: ${error.message}`);
+  const { data } = supabase.storage.from(BUCKET).getPublicUrl(path);
+  return data.publicUrl;
+}
+
+async function resolveBlogCoverImage(
+  supabase: DbClient,
+  slug: string,
+  formData: FormData,
+  fallback: string | null,
+): Promise<{ coverImage: string | null; error?: string }> {
+  const urlField = String(formData.get("coverImage") ?? "").trim() || null;
+  const file = formData.get("coverImageFile");
+
+  if (file instanceof File && file.size > 0) {
+    try {
+      return { coverImage: await uploadBlogCover(supabase, slug, file) };
+    } catch (e) {
+      return {
+        coverImage: fallback,
+        error: e instanceof Error ? e.message : "Cover image upload failed.",
+      };
+    }
+  }
+
+  if (urlField) return { coverImage: urlField };
+  return { coverImage: fallback };
+}
+
 /** Extract the storage object path from a public URL (null if not our bucket). */
 function storagePathFromUrl(url: string): string | null {
   const marker = `/${BUCKET}/`;
@@ -386,12 +425,20 @@ export async function createBlogPost(
   }
 
   const supabase = await createServerSupabase();
+  const { coverImage, error: uploadError } = await resolveBlogCoverImage(
+    supabase,
+    fields.slug,
+    formData,
+    null,
+  );
+  if (uploadError) return { error: uploadError };
+
   const { error } = await supabase.from("blog_posts").insert({
     title: fields.title,
     slug: fields.slug,
     excerpt: fields.excerpt,
     content: fields.content,
-    cover_image: fields.coverImage,
+    cover_image: coverImage,
     published: fields.published,
   });
 
@@ -426,6 +473,16 @@ export async function updateBlogPost(
   }
 
   const supabase = await createServerSupabase();
+  const existingCover =
+    String(formData.get("existingCoverImage") ?? "").trim() || fields.coverImage;
+  const { coverImage, error: uploadError } = await resolveBlogCoverImage(
+    supabase,
+    fields.slug,
+    formData,
+    existingCover,
+  );
+  if (uploadError) return { error: uploadError };
+
   const { error } = await supabase
     .from("blog_posts")
     .update({
@@ -433,7 +490,7 @@ export async function updateBlogPost(
       slug: fields.slug,
       excerpt: fields.excerpt,
       content: fields.content,
-      cover_image: fields.coverImage,
+      cover_image: coverImage,
       published: fields.published,
     })
     .eq("id", id);

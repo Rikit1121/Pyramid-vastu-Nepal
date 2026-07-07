@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useRef, useState } from "react";
 import Link from "next/link";
 import type { BlogPost } from "@/types";
 import type { ActionState } from "@/app/admin/actions";
@@ -31,11 +31,25 @@ export default function BlogPostForm({ mode, action, post }: BlogPostFormProps) 
     action,
     {},
   );
+  const fileRef = useRef<HTMLInputElement>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(
+    post?.coverImage ?? null,
+  );
+
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (file) setPreviewUrl(URL.createObjectURL(file));
+  }
 
   return (
-    <form action={formAction} className="flex flex-col gap-6">
+    <form action={formAction} encType="multipart/form-data" className="flex flex-col gap-6">
       {mode === "edit" && post && (
-        <input type="hidden" name="id" value={post.id} />
+        <>
+          <input type="hidden" name="id" value={post.id} />
+          {post.coverImage && (
+            <input type="hidden" name="existingCoverImage" value={post.coverImage} />
+          )}
+        </>
       )}
 
       {state.error && (
@@ -122,10 +136,49 @@ export default function BlogPostForm({ mode, action, post }: BlogPostFormProps) 
         />
       </div>
 
-      {/* Cover image URL */}
+      {/* Cover image upload */}
+      <div>
+        <label className={labelClass}>Cover Image</label>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+          {previewUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={previewUrl}
+              alt="Cover preview"
+              className="aspect-[4/3] w-full max-w-xs rounded-card border border-border-hairline object-cover"
+            />
+          ) : (
+            <div className="flex aspect-[4/3] w-full max-w-xs items-center justify-center rounded-card border border-border-hairline bg-surface text-xs text-ivory-text/30">
+              No cover image
+            </div>
+          )}
+          <div className="flex flex-col gap-2">
+            <input
+              ref={fileRef}
+              type="file"
+              name="coverImageFile"
+              accept="image/*"
+              className="hidden"
+              onChange={handleFileChange}
+            />
+            <button
+              type="button"
+              onClick={() => fileRef.current?.click()}
+              className="inline-flex h-9 items-center justify-center rounded-btn border border-border-hairline px-4 text-xs font-medium text-ivory-text/70 transition-colors hover:border-gold-line/50 hover:text-ivory-text"
+            >
+              {previewUrl ? "Replace image" : "Upload image"}
+            </button>
+            <p className="text-xs text-ivory-text/35">
+              JPG, PNG, or WebP. Uploaded to Supabase Storage on save.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Optional external URL fallback */}
       <div>
         <label htmlFor="coverImage" className={labelClass}>
-          Cover Image URL
+          Or paste image URL
         </label>
         <input
           id="coverImage"
@@ -136,7 +189,7 @@ export default function BlogPostForm({ mode, action, post }: BlogPostFormProps) 
           className={inputClass}
         />
         <p className="mt-1.5 text-xs text-ivory-text/35">
-          Paste a full URL. Upload images to Supabase Storage and paste the public URL here.
+          Optional. If you upload a file above, the upload takes priority.
         </p>
       </div>
 
