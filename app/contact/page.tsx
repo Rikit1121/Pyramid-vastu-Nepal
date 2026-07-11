@@ -12,7 +12,7 @@ import {
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with Pyramid Vaastu Yantra — Vaastu advisory, geopathic stress assessment, and handcrafted sacred geometry in Kathmandu, Nepal.",
+    "Get in touch with Pyramid Vaastu Yantra — Vaastu advisory, geopathic stress assessment, and sacred geometry in Kathmandu, Nepal.",
 };
 
 // Placeholder — swap for a real video ID from the brand's YouTube channel.

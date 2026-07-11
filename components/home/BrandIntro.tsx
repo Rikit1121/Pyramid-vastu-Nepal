@@ -47,7 +47,7 @@ export default function BrandIntro() {
               <p className="mt-6 text-base leading-relaxed text-ivory-text/70">
                 Rooted in the timeless principles of Vaastu Shastra and sacred
                 geometry, we help you bring harmony to the spaces you live and
-                work in. Every consultation, assessment, and handcrafted yantra is
+                work in. Every consultation, assessment, and yantra is
                 guided by the same belief — a space in balance supports a life
                 in balance.
               </p>

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | Pyramid Vaastu Yantra",
   },
   description:
-    "Premium Vaastu advisory, geopathic stress assessment, and handcrafted pyramid yantras — rooted in Nepali tradition.",
+    "Premium Vaastu advisory, geopathic stress assessment, and pyramid yantras — rooted in Nepali tradition.",
   icons: {
     icon: "/images/favicon-32.png",
     apple: "/images/favicon-128.png",

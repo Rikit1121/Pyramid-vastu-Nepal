@@ -8,7 +8,7 @@ import { OFFICE_ADDRESS, OFFICE_HOURS } from "@/lib/contact";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "The story behind Pyramid Vaastu Yantra — ancient Vaastu tradition, sacred geometry, and handcrafted copper work rooted in Nepal.",
+    "The story behind Pyramid Vaastu Yantra — ancient Vaastu tradition, sacred geometry, and copper work rooted in Nepal.",
 };
 
 const CREDIBILITY_POINTS = [
@@ -65,8 +65,8 @@ export default async function AboutPage() {
           />
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-ivory-text/65">
-              Vaastu advisory, geopathic stress assessment, and handcrafted
-              pyramid yantras — rooted in Kathmandu, guided by tradition.
+              Vaastu advisory, geopathic stress assessment, and pyramid
+              yantras — rooted in Kathmandu, guided by tradition.
             </p>
           </Reveal>
         </div>

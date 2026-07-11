@@ -6,7 +6,7 @@ import Reveal from "@/components/shared/Reveal";
 export const metadata: Metadata = {
   title: "Shop",
   description:
-    "Handcrafted pyramids, yantras, and sacred-geometry pieces — rooted in Vaastu tradition.",
+    "Pyramids, yantras, and sacred-geometry pieces — rooted in Vaastu tradition.",
 };
 
 export const dynamic = "force-dynamic";
@@ -41,7 +41,7 @@ export default async function ShopPage() {
             Pyramids &amp; Yantras
           </h1>
           <p className="mt-5 text-base leading-relaxed text-ivory-text/65">
-            Each piece is handcrafted in authentic Vaastu proportions. Browse the
+            Each piece follows authentic Vaastu proportions. Browse the
             range below — for enquiries or guidance on which piece suits your
             space, contact us directly on WhatsApp.
           </p>

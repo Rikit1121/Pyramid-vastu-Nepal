@@ -20,7 +20,7 @@ export const SOCIAL_LINKS = [
     label: "Instagram",
   },
   {
-    href: "https://www.facebook.com/share/1bKXbRC572/",
+    href: "https://www.facebook.com/pyramidvaastunepal",
     label: "Facebook",
   },
   {

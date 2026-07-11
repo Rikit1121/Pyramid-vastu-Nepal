@@ -65,11 +65,11 @@ export default function NavBar() {
               className="h-9 w-9 shrink-0 rounded-full"
             />
             <span className="flex flex-col">
-              <span className="font-display text-[17px] tracking-wide text-ivory-text">
-                Pyramid Vaastu
+              <span className="whitespace-nowrap font-display text-[17px] tracking-wide text-ivory-text">
+                Pyramid Vaastu Nepal
               </span>
               <span className="text-[9px] uppercase tracking-[0.3em] text-gold-line">
-                Nepal · Power of Pyramid
+                Power of Pyramid
               </span>
             </span>
           </Link>

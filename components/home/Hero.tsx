@@ -119,7 +119,7 @@ export default function Hero() {
           variants={item}
           className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-ivory-text/70 sm:text-lg"
         >
-          Vaastu advisory, geopathic stress assessment, and handcrafted pyramid
+          Vaastu advisory, geopathic stress assessment, and pyramid
           yantras — rooted in ancient Nepali tradition.
         </motion.p>
 

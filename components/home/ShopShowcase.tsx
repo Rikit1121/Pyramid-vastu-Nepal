@@ -43,7 +43,7 @@ export default async function ShopShowcase() {
         {products.length === 0 ? (
           <Reveal>
             <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-ivory-text/60">
-              Handcrafted sacred-geometry pieces are on their way. Reach out on
+              Sacred-geometry pieces are on their way. Reach out on
               WhatsApp for current availability.
             </p>
           </Reveal>
