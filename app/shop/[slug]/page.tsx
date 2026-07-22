@@ -4,6 +4,12 @@ import Link from "next/link";
 import { getProductBySlug } from "@/lib/products";
 import Reveal from "@/components/shared/Reveal";
 import WhatsAppButton from "@/components/shared/WhatsAppButton";
+import JsonLd from "@/components/seo/JsonLd";
+import {
+  breadcrumbJsonLd,
+  buildPageMetadata,
+  productJsonLd,
+} from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -13,11 +19,20 @@ export const dynamic = "force-dynamic";
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = await getProductBySlug(slug);
-  if (!product) return { title: "Product Not Found" };
-  return {
+  if (!product) {
+    return buildPageMetadata({
+      title: "Product Not Found",
+      path: `/shop/${slug}`,
+      noIndex: true,
+    });
+  }
+
+  return buildPageMetadata({
     title: product.name,
     description: product.description.slice(0, 155),
-  };
+    path: `/shop/${product.slug}`,
+    ogImage: product.images[0] ?? undefined,
+  });
 }
 
 function CheckIcon() {
@@ -67,6 +82,16 @@ export default async function ProductDetailPage({ params }: Props) {
 
   return (
     <div className="relative min-h-screen">
+      <JsonLd
+        data={[
+          productJsonLd(product),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Shop", path: "/shop" },
+            { name: product.name, path: `/shop/${product.slug}` },
+          ]),
+        ]}
+      />
       <div
         className="pointer-events-none fixed inset-0 -z-10"
         style={{

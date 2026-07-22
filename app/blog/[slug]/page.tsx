@@ -3,6 +3,12 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getPublishedPostBySlug } from "@/lib/blog";
 import Reveal from "@/components/shared/Reveal";
+import JsonLd from "@/components/seo/JsonLd";
+import {
+  articleJsonLd,
+  breadcrumbJsonLd,
+  buildPageMetadata,
+} from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -11,14 +17,21 @@ export const dynamic = "force-dynamic";
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPublishedPostBySlug(slug);
-  if (!post) return { title: "Post Not Found" };
-  return {
+  if (!post) {
+    return buildPageMetadata({
+      title: "Post Not Found",
+      path: `/blog/${slug}`,
+      noIndex: true,
+    });
+  }
+
+  return buildPageMetadata({
     title: post.title,
-    description: post.excerpt?.slice(0, 155) || undefined,
-    openGraph: post.coverImage
-      ? { images: [{ url: post.coverImage }] }
-      : undefined,
-  };
+    description: post.excerpt?.slice(0, 155) || post.content.slice(0, 155),
+    path: `/blog/${post.slug}`,
+    ogImage: post.coverImage,
+    type: "article",
+  });
 }
 
 function formatDate(iso: string): string {
@@ -117,6 +130,16 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <div className="relative min-h-screen">
+      <JsonLd
+        data={[
+          articleJsonLd(post),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Blog", path: "/blog" },
+            { name: post.title, path: `/blog/${post.slug}` },
+          ]),
+        ]}
+      />
       <div
         className="pointer-events-none fixed inset-0 -z-10"
         style={{

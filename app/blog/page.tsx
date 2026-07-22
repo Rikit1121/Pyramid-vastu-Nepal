@@ -3,12 +3,15 @@ import { getAllPublishedPosts } from "@/lib/blog";
 import Reveal from "@/components/shared/Reveal";
 import RevealText from "@/components/shared/RevealText";
 import BlogCard from "@/components/blog/BlogCard";
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd, buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Blog",
   description:
-    "Insights on Vaastu Shastra, sacred geometry, geopathic stress, and the principles behind a balanced living and working space.",
-};
+    "Insights on Vaastu Shastra, sacred geometry, geopathic stress, and the principles behind a balanced living and working space in Nepal.",
+  path: "/blog",
+});
 
 export const dynamic = "force-dynamic";
 
@@ -17,6 +20,12 @@ export default async function BlogIndexPage() {
 
   return (
     <div className="relative min-h-screen">
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+        ])}
+      />
       <div
         className="pointer-events-none fixed inset-0 -z-10"
         style={{

@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import NavBar from "@/components/shared/NavBar";
 import Footer from "@/components/shared/Footer";
+import JsonLd from "@/components/seo/JsonLd";
+import {
+  buildPageMetadata,
+  rootStructuredData,
+  SITE_SHORT_NAME,
+} from "@/lib/seo";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -17,16 +23,16 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  ...buildPageMetadata(),
   title: {
-    default: "Pyramid Vaastu Yantra",
-    template: "%s | Pyramid Vaastu Yantra",
+    default: SITE_SHORT_NAME,
+    template: `%s | ${SITE_SHORT_NAME}`,
   },
-  description:
-    "Premium Vaastu advisory, geopathic stress assessment, and pyramid yantras — rooted in Nepali tradition.",
   icons: {
     icon: "/images/favicon-32.png",
     apple: "/images/favicon-128.png",
   },
+  manifest: "/manifest.webmanifest",
 };
 
 export default function RootLayout({
@@ -40,6 +46,7 @@ export default function RootLayout({
       className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-bg-deep font-sans text-ivory-text">
+        <JsonLd data={rootStructuredData()} />
         <NavBar />
         {/*
          * Phase 2 note: the homepage hero is full-bleed under the transparent nav,

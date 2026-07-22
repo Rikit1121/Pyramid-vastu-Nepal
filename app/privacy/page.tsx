@@ -3,15 +3,24 @@ import Link from "next/link";
 import Reveal from "@/components/shared/Reveal";
 import RevealText from "@/components/shared/RevealText";
 import { EMAILS } from "@/lib/contact";
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd, buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Privacy Policy",
   description: "How Pyramid Vaastu Nepal collects, uses, and protects your information.",
-};
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (
     <article>
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Privacy Policy", path: "/privacy" },
+        ])}
+      />
       <section className="relative overflow-hidden border-b border-border-hairline">
         <div
           className="pointer-events-none absolute inset-0 bg-bg-deep/95"

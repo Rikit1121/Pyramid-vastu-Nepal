@@ -2,12 +2,16 @@ import type { Metadata } from "next";
 import { getAllProducts } from "@/lib/products";
 import ProductCard from "@/components/products/ProductCard";
 import Reveal from "@/components/shared/Reveal";
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd, buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Shop",
   description:
-    "Pyramids, yantras, and sacred-geometry pieces — rooted in Vaastu tradition.",
-};
+    "Pyramids, yantras, and sacred-geometry pieces — rooted in Vaastu tradition. Browse pyramid yantras for Vaastu correction in Nepal.",
+  path: "/shop",
+  ogImage: "/images/background6.png",
+});
 
 export const dynamic = "force-dynamic";
 
@@ -16,6 +20,12 @@ export default async function ShopPage() {
 
   return (
     <div className="relative min-h-screen">
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Shop", path: "/shop" },
+        ])}
+      />
       {/* Page background */}
       <div
         className="pointer-events-none fixed inset-0 -z-10"

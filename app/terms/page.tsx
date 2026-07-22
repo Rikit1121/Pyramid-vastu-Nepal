@@ -3,15 +3,24 @@ import Link from "next/link";
 import Reveal from "@/components/shared/Reveal";
 import RevealText from "@/components/shared/RevealText";
 import { EMAILS } from "@/lib/contact";
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd, buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Terms of Use",
   description: "Terms and conditions for using the Pyramid Vaastu Nepal website and services.",
-};
+  path: "/terms",
+});
 
 export default function TermsPage() {
   return (
     <article>
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Terms of Use", path: "/terms" },
+        ])}
+      />
       <section className="relative overflow-hidden border-b border-border-hairline">
         <div
           className="pointer-events-none absolute inset-0 bg-bg-deep/95"

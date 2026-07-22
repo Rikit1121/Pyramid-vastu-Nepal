@@ -2,14 +2,17 @@ import type { Metadata } from "next";
 import Reveal from "@/components/shared/Reveal";
 import RevealText from "@/components/shared/RevealText";
 import AdvisorGrid from "@/components/shared/AdvisorGrid";
+import JsonLd from "@/components/seo/JsonLd";
 import { getActiveAdvisors } from "@/lib/advisors";
 import { OFFICE_ADDRESS, OFFICE_HOURS } from "@/lib/contact";
+import { breadcrumbJsonLd, buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "About",
   description:
     "The story behind Pyramid Vaastu Yantra — ancient Vaastu tradition, sacred geometry, and copper work rooted in Nepal.",
-};
+  path: "/about",
+});
 
 const CREDIBILITY_POINTS = [
   {
@@ -37,6 +40,12 @@ export default async function AboutPage() {
   const advisors = await getActiveAdvisors();
   return (
     <article>
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "About", path: "/about" },
+        ])}
+      />
       {/* ── Page header ─────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden border-b border-border-hairline">
         <div

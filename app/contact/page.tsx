@@ -3,17 +3,20 @@ import Reveal from "@/components/shared/Reveal";
 import RevealText from "@/components/shared/RevealText";
 import ContactForm from "@/components/contact/ContactForm";
 import WhatsAppButton from "@/components/shared/WhatsAppButton";
+import JsonLd from "@/components/seo/JsonLd";
 import {
   EMAILS,
   PHONES,
   SOCIAL_LINKS,
 } from "@/lib/contact";
+import { breadcrumbJsonLd, buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Contact",
   description:
     "Get in touch with Pyramid Vaastu Yantra — Vaastu advisory, geopathic stress assessment, and sacred geometry in Kathmandu, Nepal.",
-};
+  path: "/contact",
+});
 
 // Placeholder — swap for a real video ID from the brand's YouTube channel.
 const YOUTUBE_VIDEO_ID = "gRo9XeFVgZU";
@@ -75,6 +78,12 @@ const SOCIALS = [
 export default function ContactPage() {
   return (
     <div className="relative min-h-screen">
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Contact", path: "/contact" },
+        ])}
+      />
       {/* Subtle page background */}
       <div
         className="pointer-events-none fixed inset-0 -z-10"
